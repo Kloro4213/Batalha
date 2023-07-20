@@ -68,6 +68,7 @@ class CMovimento:
         self.caminho = []
     
     def direcionar(self,letra):
+        destino = ""
         if self.movimentorestante == 0:
             sg.popup("Não há mais movimentos restantes")
         else:
@@ -79,6 +80,12 @@ class CMovimento:
                     else:
                         for casa in self.caminho:
                             self.casasdisponíveis = casa.obterVizinhos()
+                    self.casasdisponíveis = list(dict.fromkeys(self.casasdisponíveis))
+                    for casa in self.casasdisponíveis:
+                        if casa.ocupante != None:
+                            self.casasdisponíveis.remove(casa)
+                        elif casa.visitado != None and casa.visitado != self.dono:
+                            self.casasdisponíveis.remove(casa)
                     destino = self.casasdisponíveis[np.random.randint(len(self.casasdisponíveis))]
                 case "W":
                     if self.movimentorestante > 0:
@@ -88,6 +95,7 @@ class CMovimento:
                             destino = CAMPO[self.casaatual.y-1][self.casaatual.x]
                     else:
                         sg.popup("Não há mais movimentos restantes")
+                        passarvez()
                 case "A":
                     if self.movimentorestante > 0:
                         if self.dono.x == 0:
@@ -95,6 +103,7 @@ class CMovimento:
                         else: destino = CAMPO[self.casaatual.y][self.casaatual.x-1]
                     else:
                         sg.popup("Não há mais movimentos restantes")
+                        passarvez()
                 case "S":
                     if self.movimentorestante > 0:
                         if self.dono.y == 6:
@@ -102,6 +111,7 @@ class CMovimento:
                         else: destino = CAMPO[self.casaatual.y+1][self.casaatual.x]
                     else:
                         sg.popup("Não há mais movimentos restantes")
+                        passarvez()
                 case "D":
                     if self.movimentorestante > 0:
                         if self.dono.x == 6:
@@ -109,26 +119,27 @@ class CMovimento:
                         else: destino = CAMPO[self.casaatual.y][self.casaatual.x+1]
                     else:
                         sg.popup("Não há mais movimentos restantes")
-
-            
+                        passarvez()
             if self.caminho == []: 
                 self.casasdisponíveis = self.casaatual.obterVizinhos()
             else:
                 for casa in self.caminho:
-                    self.casasdisponíveis = casa.obterVizinhos()
+                    self.casasdisponíveis += casa.obterVizinhos()
+            self.casasdisponíveis = list(dict.fromkeys(self.casasdisponíveis))
             for casa in self.casasdisponíveis:
                         if casa.ocupante != None:
                             self.casasdisponíveis.remove(casa)
-                        if casa.visitado != None and casa.visitado != self.dono:
+                        elif casa.visitado != None and casa.visitado != self.dono:
                             self.casasdisponíveis.remove(casa)
-            self.casaatual.ocupante = None
-            self.casaatual = destino
-            self.casaatual.ocupante = self.dono
-            if destino not in self.caminho:
-                self.caminho.append(destino)
-                destino.visitado = self.dono
-                self.movimentorestante -= 1
-                passarvez()        
+            if destino in self.casasdisponíveis:
+                self.casaatual.ocupante = None
+                self.casaatual = destino
+                self.casaatual.ocupante = self.dono
+                if destino not in self.caminho:
+                    self.caminho.append(destino)
+                    destino.visitado = self.dono
+                    self.movimentorestante -= 1
+                    passarvez()        
             else:
                 sg.popup("Você não pode se mover aí!")
 
@@ -162,7 +173,9 @@ print(jogo.temjogador)
 
 def batalha():
     sg.popup("A Batalha não existe ainda :)")
+    modo[0] = "Edição"
     modo[1] = ""
+    modo[2] = ""
 
 def invocarJogador(campo,y,x):
     if jogo.temjogador == True:
@@ -347,7 +360,7 @@ for j in range(7):
     for k in range(7):
         CAMPO[j][k] = CCasa(j,k,CCarta(letras[j]+str(k+1)))
 
-modo = ["Edição","Ninguém","Nada","","",""]
+modo = ["Edição","Nada","","","",""]
 
 imprimirCampo(CAMPO)
 while modo[0] == "Edição":
@@ -361,23 +374,26 @@ while modo[0] == "Jogo":
     if modo[2] == "":
         sg.popup("O Jogo realmente começou")
         sg.popup("Veremos quem se move primeiro")
-        if np.random.randint(2) == 1:
+        al = np.random.randint(2)
+        if al == 1:
             modo[2]="J"
             sg.popup("O Jogador começa!")
         else:
             modo[2]="I"
             sg.popup("O Inimigo começa!")
-        modo[1] = "Movimento"
+    modo[1] = "Movimentação"
     
     if modo[1] == "Movimentação":
-        while modo[2] == "J":
+        if modo[2] == "J":
             if jogo.movimentoJ.dono == None:
                 jogo.movimentoJ = CMovimento(jogo.jogador)
                 sg.popup("o movimento do jogador começou")
-            if jogo.movimentoJ.movimentorestante == 0:
-                if jogo.movimentoI.movimentorestante == 0:
-                    batalha()
-                else: passarvez()
+            if jogo.movimentoJ.movimentorestante <= 0:
+                if jogo.movimentoJ.movimentorestante != None and jogo.movimentoI.movimentorestante != None:  
+                    if jogo.movimentoJ.movimentorestante <= 0:
+                        if jogo.movimentoI.movimentorestante <= 0:
+                            batalha()
+                        else: passarvez()
             layout =[
                     [sg.T(' '  * 10), sg.Button("W")],
                     [sg.Button("A"), sg.T(' ' * 15), sg.Button("D")],
@@ -394,14 +410,15 @@ while modo[0] == "Jogo":
             else: 
                 jogo.movimentoJ.direcionar(event)
                 imprimirCampo(CAMPO)
-        else:
+        elif modo[2] == "I":
             if jogo.movimentoI.dono == None:
                 jogo.movimentoI = CMovimento(jogo.inimigo)
                 sg.popup("o movimento do inimigo começou")
-            if jogo.movimentoJ.movimentorestante == 0:
-                if jogo.movimentoI.movimentorestante == 0:
-                    batalha()
-                else: passarvez()
+            if jogo.movimentoJ.movimentorestante != None and jogo.movimentoI.movimentorestante != None:  
+                if jogo.movimentoJ.movimentorestante <= 0:
+                    if jogo.movimentoI.movimentorestante <= 0:
+                        batalha()
+                    else: passarvez()
             jogo.movimentoI.direcionar("?")
-            imprimirCampo(CAMPO)
+        imprimirCampo(CAMPO)
             

@@ -4,78 +4,57 @@ from colorama import Fore, Back, Style
 import classe_casa as CC
 import classe_movimento as CM
 import classe_carta as CA
+import classe_jogo as CJ
+import classe_jogador as CJD
+import classe_inimigo as CI
 from funcao_imprimir_campo import imprimirCampo
 from funcao_comando import comando
 import funcoes_gerais as FG
 
 
-class CJogo:
-    def __init__(self):
-        self.temjogador = False
-        self.teminimigo = False
-        self.jogador = None
-        self.inimigo = None
-        self.movimentoJ = CM.Movimento(None)
-        self.movimentoI = CM.Movimento(None)
 
-class CJogador:
-    def __init__(self,y=None,x=None,vida=None,cartas=None,nome="Kloro"):
-        self.vida=vida
-        self.cartas=cartas
-        self.y=y
-        self.x=x
-        self.nome=nome
-    
-class CInimigo:
-    def __init__(self,y=None,x=None,vida=None,cartas=None,nome="Inimigo"):
-        self.vida=vida
-        self.cartas=cartas
-        self.y=y
-        self.x=x
-        self.nome=nome
-
-jogo = CJogo()
 letras = ['A','B','C','D','E','F','G']
 
-CAMPO = np.empty([7, 7], dtype = CC.Casa)
+
 
 
 for j in range(7):
     for k in range(7):
-        CAMPO[j][k] = CC.Casa(j,k,CA.Carta(letras[j]+str(k+1)))
+        CJ.jogo.campo[j][k] = CC.Casa(j,k,CA.Carta(letras[j]+str(k+1)))
 
-modo = ["Edição","Nada","","","",""]
-
-imprimirCampo(CAMPO)
-while modo[0] == "Edição":
+imprimirCampo(CJ.jogo.campo)
+sg.popup(CJ.jogo.modo)
+while CJ.jogo.modo[0] == "Edição":
     comando("")
-    imprimirCampo(CAMPO)
+    imprimirCampo(CJ.jogo.campo)
 
-while modo[0] == "Sair":
+comando("")
+
+while CJ.jogo.modo[0] == "Sair":
     break
 
-while modo[0] == "Jogo":
-    if modo[2] == "":
-        sg.popup("O Jogo realmente começou")
+while CJ.jogo.modo[0] == "Jogo":
+    if CJ.jogo.modo[2] == "":
+        sg.popup("O CJ.jogo realmente começou")
         sg.popup("Veremos quem se move primeiro")
         al = np.random.randint(2)
         if al == 1:
-            modo[2]="J"
+            CJ.jogo.modo[2]="J"
             sg.popup("O Jogador começa!")
         else:
-            modo[2]="I"
+            CJ.jogo.modo[2]="I"
             sg.popup("O Inimigo começa!")
-    modo[1] = "Movimentação"
+    CJ.jogo.modo[1] = "Movimentação"
     
-    if modo[1] == "Movimentação":
-        if modo[2] == "J":
-            if jogo.movimentoJ.dono == None:
-                jogo.movimentoJ = CM.Movimento(jogo.jogador)
+    if CJ.jogo.modo[1] == "Movimentação":
+        if CJ.jogo.modo[2] == "J":
+            if CJ.jogo.movimentoJ.dono == None:
+                CJ.jogo.movimentoJ = CM.Movimento(CJ.jogo.jogador)
                 sg.popup("o movimento do jogador começou")
-            if jogo.movimentoJ.movimentorestante <= 0:
-                if jogo.movimentoJ.movimentorestante != None and jogo.movimentoI.movimentorestante != None:  
-                    if jogo.movimentoJ.movimentorestante <= 0:
-                        if jogo.movimentoI.movimentorestante <= 0:
+            if CJ.jogo.movimentoJ.movimentorestante <= 0:
+                if CJ.jogo.movimentoJ.movimentorestante != None and CJ.jogo.movimentoI.movimentorestante != None:  
+                    if CJ.jogo.movimentoJ.movimentorestante <= 0:
+                        if CJ.jogo.movimentoI.movimentorestante <= 0:
                             FG.batalha()
                         else: FG.passarvez()
             layout =[
@@ -90,19 +69,19 @@ while modo[0] == "Jogo":
             window.close()
             if event == "OK":
                 comando(event[0])
-                imprimirCampo(CAMPO)
+                imprimirCampo(CJ.jogo.campo)
             else: 
-                jogo.movimentoJ.direcionar(event)
-                imprimirCampo(CAMPO)
-        elif modo[2] == "I":
-            if jogo.movimentoI.dono == None:
-                jogo.movimentoI = CM.Movimento(jogo.inimigo)
+                CJ.jogo.movimentoJ.direcionar(event)
+                imprimirCampo(CJ.jogo.campo)
+        elif CJ.jogo.modo[2] == "I":
+            if CJ.jogo.movimentoI.dono == None:
+                CJ.jogo.movimentoI = CM.Movimento(CJ.jogo.inimigo)
                 sg.popup("o movimento do inimigo começou")
-            if jogo.movimentoJ.movimentorestante != None and jogo.movimentoI.movimentorestante != None:  
-                if jogo.movimentoJ.movimentorestante <= 0:
-                    if jogo.movimentoI.movimentorestante <= 0:
+            if CJ.jogo.movimentoJ.movimentorestante != None and CJ.jogo.movimentoI.movimentorestante != None:  
+                if CJ.jogo.movimentoJ.movimentorestante <= 0:
+                    if CJ.jogo.movimentoI.movimentorestante <= 0:
                         FG.batalha()
                     else: FG.passarvez()
-            jogo.movimentoI.direcionar("?")
-        imprimirCampo(CAMPO)
+            CJ.jogo.movimentoI.direcionar("?")
+        imprimirCampo(CJ.jogo.campo)
             

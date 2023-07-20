@@ -2,6 +2,7 @@ import numpy as np
 import PySimpleGUI as sg
 from colorama import Fore, Back, Style
 import funcoes_gerais as FG
+import classe_jogo as CJ
 
 class Movimento:
     def __init__(self,dono):
@@ -45,7 +46,7 @@ class Movimento:
                         if self.dono.x == 0:
                             sg.popup("Você não pode se mover aí!")
                         else: 
-                            destino = jogo.CAMPO[self.casaatual.y-1][self.casaatual.x]
+                            destino = CJ.jogo.campo[self.casaatual.y-1][self.casaatual.x]
                     else:
                         sg.popup("Não há mais movimentos restantes")
                         FG.passarvez()
@@ -53,7 +54,7 @@ class Movimento:
                     if self.movimentorestante > 0:
                         if self.dono.x == 0:
                             sg.popup("Você não pode se mover aí!")
-                        else: destino = jogo.CAMPO[self.casaatual.y][self.casaatual.x-1]
+                        else: destino = CJ.jogo.campo[self.casaatual.y][self.casaatual.x-1]
                     else:
                         sg.popup("Não há mais movimentos restantes")
                         FG.passarvez()
@@ -61,7 +62,7 @@ class Movimento:
                     if self.movimentorestante > 0:
                         if self.dono.y == 6:
                             sg.popup("Você não pode se mover aí!")
-                        else: destino = jogo.CAMPO[self.casaatual.y+1][self.casaatual.x]
+                        else: destino = CJ.jogo.campo[self.casaatual.y+1][self.casaatual.x]
                     else:
                         sg.popup("Não há mais movimentos restantes")
                         FG.passarvez()
@@ -69,7 +70,7 @@ class Movimento:
                     if self.movimentorestante > 0:
                         if self.dono.x == 6:
                             sg.popup("Você não pode se mover aí!")
-                        else: destino = jogo.CAMPO[self.casaatual.y][self.casaatual.x+1]
+                        else: destino = CJ.jogo.campo[self.casaatual.y][self.casaatual.x+1]
                     else:
                         sg.popup("Não há mais movimentos restantes")
                         FG.passarvez()
@@ -88,6 +89,8 @@ class Movimento:
                 self.casaatual.ocupante = None
                 self.casaatual = destino
                 self.casaatual.ocupante = self.dono
+                self.dono.x = destino.x
+                self.dono.y = destino.y
                 if destino not in self.caminho:
                     self.caminho.append(destino)
                     destino.visitado = self.dono

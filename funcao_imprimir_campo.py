@@ -17,12 +17,14 @@ def imprimirCampo(campo):
             final = Fore.WHITE
             corsim = Back.BLACK
             cornao = Back.BLACK
-            if CJ.jogo.movimentoJ.caminho != None:
-                if casa in CJ.jogo.movimentoJ.caminho:
-                    corsim = Back.LIGHTGREEN_EX
-            if CJ.jogo.movimentoI.caminho != None:
-                if casa in CJ.jogo.movimentoI.caminho:
-                    corsim = Back.LIGHTRED_EX
+            if CJ.jogo.movimentoJ != None:
+                if CJ.jogo.movimentoJ.caminho != None:
+                    if casa in CJ.jogo.movimentoJ.caminho:
+                        corsim = Back.LIGHTGREEN_EX
+            if CJ.jogo.movimentoI != None:
+                if CJ.jogo.movimentoI.caminho != None:
+                    if casa in CJ.jogo.movimentoI.caminho:
+                        corsim = Back.LIGHTRED_EX
             ocupante = casa.ocupante
             if ocupante == None:
                 ocupantenome = ""
@@ -40,12 +42,14 @@ def imprimirCampo(campo):
             final = Fore.WHITE
             corsim = Back.BLACK
             cornao = Back.BLACK
-            if CJ.jogo.movimentoJ.caminho != None:
-                if casa in CJ.jogo.movimentoJ.caminho:
-                    corsim = Back.LIGHTGREEN_EX
-            if CJ.jogo.movimentoI.caminho != None:
-                if casa in CJ.jogo.movimentoI.caminho:
-                    corsim = Back.LIGHTRED_EX
+            if CJ.jogo.movimentoJ != None:
+                if CJ.jogo.movimentoJ.caminho != None:
+                    if casa in CJ.jogo.movimentoJ.caminho:
+                        corsim = Back.LIGHTGREEN_EX
+            if CJ.jogo.movimentoI != None:
+                if CJ.jogo.movimentoI.caminho != None:
+                    if casa in CJ.jogo.movimentoI.caminho:
+                        corsim = Back.LIGHTRED_EX
             print("|"+formatacao+corsim+textoC.format("")+final+cornao,end="")
         print("|")        
         for casa in fileira:
@@ -53,12 +57,14 @@ def imprimirCampo(campo):
             final = Fore.WHITE
             corsim = Back.BLACK
             cornao = Back.BLACK
-            if CJ.jogo.movimentoJ.caminho != None:
-                if casa in CJ.jogo.movimentoJ.caminho:
-                    corsim = Back.LIGHTGREEN_EX
-            if CJ.jogo.movimentoI.caminho != None:
-                if casa in CJ.jogo.movimentoI.caminho:
-                    corsim = Back.LIGHTRED_EX
+            if CJ.jogo.movimentoJ != None:
+                if CJ.jogo.movimentoJ.caminho != None:
+                    if casa in CJ.jogo.movimentoJ.caminho:
+                        corsim = Back.LIGHTGREEN_EX
+            if CJ.jogo.movimentoI != None:
+                if CJ.jogo.movimentoI.caminho != None:
+                    if casa in CJ.jogo.movimentoI.caminho:
+                        corsim = Back.LIGHTRED_EX
             carta = casa.carta
             if carta == None:
                 cartanome = ""

@@ -29,24 +29,7 @@ teste = Carta(
             )	
         
 					
-					
-teste = Carta( 
-                #Nome
-                "Teste",
-                
-
-                #Efeito
-                None,
-                
-
-                #Descrição
-                "TESTE ISSO É UM TESTE",
-                
-
-                #Dono??????
-                None
-            )
-					
+	
 					
 
 					

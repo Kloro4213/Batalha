@@ -20,6 +20,7 @@ def batalha():
     sg.popup("Iniciando batalha")
     CJ.jogo.modo[1] = "Batalha"
     limparmovimento()
+    passarvez()
 
 def invocarJogador(campo,y,x,nome):
     if CJ.jogo.temjogador == True:
@@ -27,7 +28,7 @@ def invocarJogador(campo,y,x,nome):
         sg.popup(CJ.jogo.jogador.x,CJ.jogo.jogador.y)
     else:
         vida = 100
-        cartas = None
+        cartas = {}
         if CJ.jogo.jogador != None:
             x = CJ.jogo.jogador.x
             y = CJ.jogo.jogador.y
@@ -47,14 +48,14 @@ def invocarInimigo(campo,y,x,nome):
         sg.popup(CJ.jogo.inimigo.x,CJ.jogo.inimigo.y)
     else:
         vida = 100
-        cartas = None
+        cartas = {}
         if CJ.jogo.inimigo != None:
             x = CJ.jogo.inimigo.x
             y = CJ.jogo.inimigo.y
             vida = CJ.jogo.inimigo.vida
             cartas = CJ.jogo.inimigo.cartas
             nome = CJ.jogo.inimigo.nome
-        Lutécio = CJD.Jogador(None,None,vida,cartas,nome)
+        Lutécio = CJD.Jogador(None,None,vida, cartas,nome)
         campo[y][x].ocupante = Lutécio
         Lutécio.y = y
         Lutécio.x = x

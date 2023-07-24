@@ -1,0 +1,17 @@
+Existem dois atributos a cada personagem
+vida: quantidade de dano que pode sofrer antes de ser derrotado
+mente: barra abstrata que mede a concentração, foco e compostura do personagem. Todos têm uma barra de dez unidades de mente
+
+Existem também os rótulos. Rótulos são palavras-chave (geralmente adjetivos) aplicáveis a quase tudo no jogo. Cartas, habilidades e personagens. 
+
+Quando começa a batalha, você recupera até ter 5 de mente. Se você já tinha, recupera tudo.
+Você sempre recupera um de mente por turno da batalha.
+Você gasta um de mente para esconder uma carta
+Você gasta um de mente para preservar uma carta
+Se não tiver mente, a sua mente para de regenerar na batalha, e sua segunda carta é escolhida aleatoriamente.
+
+É possível gastar mente em efeitos adicionais, que dependem do personagem
+Podem existir cartas que se aprimoram caso você gaste mente nelas
+É quase certo que existirão habilidades na fase de movimentação. Você teoricamente gastaria mente para ativá-las
+
+

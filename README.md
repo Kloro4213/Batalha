@@ -46,4 +46,4 @@ As cartas se resolvem simultaneamente em pares. Em questão de ordem absoluta, m
 
 A barra de mente será explicada futuramente, mas ela tem interferência direta em múltiplos aspectos do combate.
 
-Quando os cinco turnos do combate acabam, uma nova fase de movimentação começa. Cada personagem tem a opção de cair numa casa aleatória ou voltar na casa que pararam. Casas que não foram visitadas mantêm suas cartas, e casas sem cartas recebem cartas novas.
+Quando os cinco turnos do combate acabam, uma nova fase de movimentação começa. Cada personagem tem a opção de cair numa casa aleatória ou voltar na casa que pararam. Casas que não foram visitadas mantêm suas cartas, e casas sem cartas recebem cartas novas. Cartas não usadas no combate permanecem com o personagem, mas todos têm um limite de dez cartas para se ter.

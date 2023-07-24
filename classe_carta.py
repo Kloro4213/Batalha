@@ -37,8 +37,3 @@ teste = Carta(
 					
 
 					
-					
-
-
-print(teste.nome)
-print(teste.desc)

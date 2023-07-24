@@ -77,3 +77,6 @@ def comando(entrada):
                 sg.popup("O CJ.jogo realmente começou")
                 CJ.jogo.modo[1] = "Movimentação"
                 CJ.jogo.modo[0] = "Jogo"
+        case "IN":
+            for carta in CJ.jogo.jogador.cartas:
+                sg.popup(carta)

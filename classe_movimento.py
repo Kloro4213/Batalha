@@ -91,6 +91,9 @@ class Movimento:
                 self.casaatual.ocupante = self.dono
                 self.dono.x = destino.x
                 self.dono.y = destino.y
+                if destino.carta != None:
+                    self.dono.cartas.update({"Carta "+str(len(self.dono.cartas)+1):destino.carta})
+                    destino.carta = None
                 if destino not in self.caminho:
                     self.caminho.append(destino)
                     destino.visitado = self.dono

@@ -43,7 +43,7 @@ class Movimento:
                     destino = self.casasdisponíveis[np.random.randint(len(self.casasdisponíveis))]
                 case "W":
                     if self.movimentorestante > 0:
-                        if self.dono.x == 0:
+                        if self.dono.y == 0:
                             sg.popup("Você não pode se mover aí!")
                         else: 
                             destino = CJ.jogo.campo[self.casaatual.y-1][self.casaatual.x]
@@ -92,7 +92,7 @@ class Movimento:
                 self.dono.x = destino.x
                 self.dono.y = destino.y
                 if destino.carta != None:
-                    self.dono.cartas.update({"Carta "+str(len(self.dono.cartas)+1):destino.carta})
+                    self.dono.coletarCarta(destino.carta)
                     destino.carta = None
                 if destino not in self.caminho:
                     self.caminho.append(destino)

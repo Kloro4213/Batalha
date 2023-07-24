@@ -122,8 +122,8 @@ while True:
                     [sg.Text("",size=(30, 2),background_color="white",text_color="black",key="-nome-" )],
                     [sg.Text("Selecione uma carta abaixo",size=(30, 10),background_color="white",text_color="black",key="-desc-" )],
                     [sg.Checkbox('Ocultar?'), sg.Checkbox('Preservar?'), sg.Button("OK")],
-                    [sg.Button(CJ.jogo.jogador.cartas["Carta 1"].nome, key="DefinirCarta1"+CJ.jogo.jogador.cartas["Carta 1"].nome),sg.Button(CJ.jogo.jogador.cartas["Carta 2"].nome, key="DefinirCarta2"+CJ.jogo.jogador.cartas["Carta 2"].nome)],
-                    [sg.Button(CJ.jogo.jogador.cartas["Carta 3"].nome, key="DefinirCarta3"+CJ.jogo.jogador.cartas["Carta 3"].nome),sg.Button(CJ.jogo.jogador.cartas["Carta 4"].nome, key="DefinirCarta4"+CJ.jogo.jogador.cartas["Carta 4"].nome)]
+                    [sg.Button(CJ.jogo.jogador.cartas[list(CJ.jogo.jogador.cartas.keys())[0]].nome, key="DefinirCarta1"+CJ.jogo.jogador.cartas[list(CJ.jogo.jogador.cartas.keys())[0]].nome),sg.Button(CJ.jogo.jogador.cartas[list(CJ.jogo.jogador.cartas.keys())[1]].nome, key="DefinirCarta2"+CJ.jogo.jogador.cartas[list(CJ.jogo.jogador.cartas.keys())[1]].nome)],
+                    [sg.Button(CJ.jogo.jogador.cartas[list(CJ.jogo.jogador.cartas.keys())[2]].nome, key="DefinirCarta3"+CJ.jogo.jogador.cartas[list(CJ.jogo.jogador.cartas.keys())[2]].nome),sg.Button(CJ.jogo.jogador.cartas[list(CJ.jogo.jogador.cartas.keys())[3]].nome, key="DefinirCarta4"+CJ.jogo.jogador.cartas[list(CJ.jogo.jogador.cartas.keys())[3]].nome)]
                     ]
 
                 inimigo = [
@@ -133,8 +133,8 @@ while True:
                     [sg.T(' '  * 3)],
                     [sg.Text("",size=(30, 2),background_color="white",text_color="black",key="-nome-" )],
                     [sg.Text("",size=(30, 10),background_color="white",text_color="black",key="-desc-" )],
-                    [sg.Button(CJ.jogo.inimigo.cartas["Carta 1"].nome, key="Info1"+CJ.jogo.inimigo.cartas["Carta 1"].nome),sg.Button(CJ.jogo.inimigo.cartas["Carta 2"].nome, key="Info2"+CJ.jogo.inimigo.cartas["Carta 2"].nome)],
-                    [sg.Button(CJ.jogo.inimigo.cartas["Carta 3"].nome, key="Info3"+CJ.jogo.inimigo.cartas["Carta 3"].nome),sg.Button(CJ.jogo.inimigo.cartas["Carta 4"].nome, key="Info4"+CJ.jogo.inimigo.cartas["Carta 4"].nome)]
+                    [sg.Button(CJ.jogo.inimigo.cartas[list(CJ.jogo.inimigo.cartas.keys())[0]].nome, key="InfoCarta1"+CJ.jogo.inimigo.cartas[list(CJ.jogo.inimigo.cartas.keys())[0]].nome),sg.Button(CJ.jogo.inimigo.cartas[list(CJ.jogo.inimigo.cartas.keys())[1]].nome, key="InfoCarta2"+CJ.jogo.inimigo.cartas[list(CJ.jogo.inimigo.cartas.keys())[1]].nome)],
+                    [sg.Button(CJ.jogo.inimigo.cartas[list(CJ.jogo.inimigo.cartas.keys())[2]].nome, key="InfoCarta3"+CJ.jogo.inimigo.cartas[list(CJ.jogo.inimigo.cartas.keys())[2]].nome),sg.Button(CJ.jogo.inimigo.cartas[list(CJ.jogo.inimigo.cartas.keys())[3]].nome, key="InfoCarta4"+CJ.jogo.inimigo.cartas[list(CJ.jogo.inimigo.cartas.keys())[3]].nome)]
                         ]
 
                 layout = [[sg.Column(jogador),sg.Text("Turno Atual:"+str(6-int(CJ.jogo.batalha.rodadas))),sg.Column(inimigo)]]
@@ -147,18 +147,16 @@ while True:
                         event, value = window.read()
                         if list(event)[0] == "D":
                             carta = event.replace("DefinirCarta","")
-                            carta = list(carta)
-                            if carta[0] in snumeros:
-                                ordem = carta[0]
-                                del carta[0]
+                            carta = list(carta)                           
+                            ordem = carta[0]
+                            del carta[0]
                             carta = "".join(carta) 
                             window["-nome-"].update(DCC[carta].nome)
                             window["-desc-"].update(DCC[carta].desc)  
                         elif list(event)[0] == "I":
                             carta = event.replace("Info","")
                             carta = list(carta)
-                            if carta[0] in snumeros:
-                                del carta[0]
+                            del carta[0]
                             carta = "".join(carta)
                             layout2 = [[sg.Text(DCC[carta].nome)],
                                     [sg.Text(DCC[carta].desc)],
@@ -184,8 +182,8 @@ while True:
                     [sg.Text("",size=(30, 2),background_color="white",text_color="black",key="-nome-" )],
                     [sg.Text("Selecione uma carta abaixo",size=(30, 10),background_color="white",text_color="black",key="-desc-" )],
                     [sg.Checkbox('Ocultar?'), sg.Checkbox('Preservar?'), sg.Button("OK")],
-                    [sg.Button(CJ.jogo.jogador.cartas["Carta 1"].nome, key="DefinirCarta1"+CJ.jogo.jogador.cartas["Carta 1"].nome),sg.Button(CJ.jogo.jogador.cartas["Carta 2"].nome, key="DefinirCarta2"+CJ.jogo.jogador.cartas["Carta 2"].nome)],
-                    [sg.Button(CJ.jogo.jogador.cartas["Carta 3"].nome, key="DefinirCarta3"+CJ.jogo.jogador.cartas["Carta 3"].nome),sg.Button(CJ.jogo.jogador.cartas["Carta 4"].nome, key="DefinirCarta4"+CJ.jogo.jogador.cartas["Carta 4"].nome)]
+                    [sg.Button(CJ.jogo.jogador.cartas[list(CJ.jogo.jogador.cartas.keys())[0]].nome, key="DefinirCarta1"+CJ.jogo.jogador.cartas[list(CJ.jogo.jogador.cartas.keys())[0]].nome),sg.Button(CJ.jogo.jogador.cartas[list(CJ.jogo.jogador.cartas.keys())[1]].nome, key="DefinirCarta2"+CJ.jogo.jogador.cartas[list(CJ.jogo.jogador.cartas.keys())[1]].nome)],
+                    [sg.Button(CJ.jogo.jogador.cartas[list(CJ.jogo.jogador.cartas.keys())[2]].nome, key="DefinirCarta3"+CJ.jogo.jogador.cartas[list(CJ.jogo.jogador.cartas.keys())[2]].nome),sg.Button(CJ.jogo.jogador.cartas[list(CJ.jogo.jogador.cartas.keys())[3]].nome, key="DefinirCarta4"+CJ.jogo.jogador.cartas[list(CJ.jogo.jogador.cartas.keys())[3]].nome)]
                     ]
 
                 inimigo = [
@@ -196,8 +194,8 @@ while True:
                     [sg.Button(CJ.jogo.batalha.primeirarodada[1], key="InfoCarta6"+CJ.jogo.batalha.primeirarodada[1])],
                     [sg.Text("",size=(30, 2),background_color="white",text_color="black",key="-nome-" )],
                     [sg.Text("",size=(30, 10),background_color="white",text_color="black",key="-desc-" )],
-                    [sg.Button(CJ.jogo.inimigo.cartas["Carta 1"].nome, key="Info1"+CJ.jogo.inimigo.cartas["Carta 1"].nome),sg.Button(CJ.jogo.inimigo.cartas["Carta 2"].nome, key="Info2"+CJ.jogo.inimigo.cartas["Carta 2"].nome)],
-                    [sg.Button(CJ.jogo.inimigo.cartas["Carta 3"].nome, key="Info3"+CJ.jogo.inimigo.cartas["Carta 3"].nome),sg.Button(CJ.jogo.inimigo.cartas["Carta 4"].nome, key="Info4"+CJ.jogo.inimigo.cartas["Carta 4"].nome)]
+                    [sg.Button(CJ.jogo.inimigo.cartas[list(CJ.jogo.inimigo.cartas.keys())[0]].nome, key="InfoCarta1"+CJ.jogo.inimigo.cartas[list(CJ.jogo.inimigo.cartas.keys())[0]].nome),sg.Button(CJ.jogo.inimigo.cartas[list(CJ.jogo.inimigo.cartas.keys())[1]].nome, key="InfoCarta2"+CJ.jogo.inimigo.cartas[list(CJ.jogo.inimigo.cartas.keys())[1]].nome)],
+                    [sg.Button(CJ.jogo.inimigo.cartas[list(CJ.jogo.inimigo.cartas.keys())[2]].nome, key="InfoCarta3"+CJ.jogo.inimigo.cartas[list(CJ.jogo.inimigo.cartas.keys())[2]].nome),sg.Button(CJ.jogo.inimigo.cartas[list(CJ.jogo.inimigo.cartas.keys())[3]].nome, key="InfoCarta4"+CJ.jogo.inimigo.cartas[list(CJ.jogo.inimigo.cartas.keys())[3]].nome)]
                         ]
 
                 layout = [[sg.Column(jogador),sg.Text("Turno Atual:"+str(6-int(CJ.jogo.batalha.rodadas))),sg.Column(inimigo)]]
@@ -219,8 +217,7 @@ while True:
                         elif list(event)[0] == "I":
                             carta = event.replace("Info","")
                             carta = list(carta)
-                            if carta[0] in snumeros:
-                                del carta[0]
+                            del carta[0]
                             carta = "".join(carta)
                             layout2 = [[sg.Text(DCC[carta].nome)],
                                     [sg.Text(DCC[carta].desc)],

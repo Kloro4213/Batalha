@@ -80,3 +80,5 @@ def comando(entrada):
         case "IN":
             for carta in CJ.jogo.jogador.cartas:
                 sg.popup(carta)
+            for carta in CJ.jogo.inimigo.cartas:
+                sg.popup(carta)

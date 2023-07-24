@@ -83,3 +83,5 @@ while True:
                     CJ.jogo.movimentoI.direcionar("?")
         imprimirCampo(CJ.jogo.campo)
     imprimirCampo(CJ.jogo.campo)
+    while CJ.jogo.modo[1] == "Batalha":
+        break

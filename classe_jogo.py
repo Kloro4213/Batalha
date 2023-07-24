@@ -8,6 +8,7 @@ class Jogo:
         self.inimigo = None
         self.movimentoJ = None
         self.movimentoI = None
+        self.batalha = None
         self.campo = None
         self.modo = ["Edição",'','','','','','']
 

@@ -17,10 +17,8 @@ def limparmovimento():
     CJ.jogo.temjogador = False
 
 def batalha():
-    sg.popup("A Batalha não existe ainda :)")
-    CJ.jogo.modo[0] = "Edição"
-    CJ.jogo.modo[1] = ""
-    CJ.jogo.modo[2] = ""
+    sg.popup("Iniciando batalha")
+    CJ.jogo.modo[1] = "Batalha"
     limparmovimento()
 
 def invocarJogador(campo,y,x,nome):

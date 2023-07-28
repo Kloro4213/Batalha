@@ -3,32 +3,15 @@ import PySimpleGUI as sg
 from colorama import Fore, Back, Style
 
 class Carta:
-    def __init__(self,nome=None,efeito=None,desc=None,dono=None):
+    def __init__(self,id,nome,tipo,efeito=None,desc=None):
+        self.id = id
         self.nome = nome
+        self.tipo = tipo
         self.desc = desc
         self.efeito = efeito
-        self.dono = dono
 
+#cartabranca = Carta()
 
-
-teste = Carta( 
-                #Nome
-                "Teste",
-                
-
-                #Efeito
-                None,
-                
-
-                #Descrição
-                "TESTE ISSO É UM TESTE",
-                
-
-                #Dono??????
-                None
-            )	
-        
-					
 	
 					
 

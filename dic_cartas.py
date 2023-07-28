@@ -1,12 +1,29 @@
 import classe_carta as CC
 import numpy as np
 
+
 DCC = {}
 
-DCC.update({"Bola de Fogo":CC.Carta("Bola de Fogo", None, "Lança uma Lança uma poderosíssima bola de fogo")})
+cartas = []
 
-DCC.update({"Soco potente":CC.Carta("Soco potente", None, "Desfere um murraço imprevisível")})
+with open("Cartas Formatadas.txt","r", encoding="utf-8") as f:
+    cartas = f.readlines()
 
-DCC.update({"Cuspe Ácido":CC.Carta("Cuspe Ácido", None, "Lança um esguicho de solução corrosiva")})
+for carta in cartas:
+    cs = carta.split("—")
+    DCC.update({int(cs[0]):CC.Carta(int(cs[0]),cs[1],cs[2],None,cs[3])})
 
-DCC.update({"3 Oitão":CC.Carta("3 Oitão", None, "O alvo vira queijo suíço")})
+
+def imprimirDCC():
+
+    j = 0
+
+    while j < len(DCC):
+        print(DCC[j].id)
+        print(DCC[j].nome)
+        print(DCC[j].tipo)
+        print(DCC[j].desc)
+        print("")
+        j = j+1
+
+#imprimirDCC()

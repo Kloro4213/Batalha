@@ -1,3 +1,5 @@
+from dic_cartas import DCC
+
 class Inimigo:
     def __init__(self,y=None,x=None,vida=None,cartas = {},nome=""):
         self.vida=vida
@@ -6,8 +8,17 @@ class Inimigo:
         self.x=x
         self.nome=nome
         self.mente = None
+        self.baralho = []
+        self.cartasbasicas = []
 
-    def coletarCarta(self,carta):
+def coletarCarta(self,carta):
+        if carta.id not in self.baralho:
+            if carta.tipo == "Ataque":
+                carta = DCC[self.cartasbasicas[0]]
+            if carta.tipo == "Manobra":
+                carta = DCC[self.cartasbasicas[1]]
+            if carta.tipo == "Talento":
+                carta = DCC[self.cartasbasicas[2]]
         if "Carta 1" not in self.cartas:
             self.cartas.update({"Carta 1":carta})
         elif "Carta 2" not in self.cartas:
@@ -28,4 +39,4 @@ class Inimigo:
             self.cartas.update({"Carta 9":carta})
         elif "Carta 10" not in self.cartas:
             self.cartas.update({"Carta 10":carta})
-    
+        

@@ -26,9 +26,9 @@ CJ.jogo.campo = np.empty([7, 7], dtype = CC.Casa)
 
 for j in range(7):
     for k in range(7):
-        CJ.jogo.campo[j][k] = CC.Casa(j,k,DCC[lcartas[np.random.randint(4)]],None,None)
+        CJ.jogo.campo[j][k] = CC.Casa(j,k,None,None)
 
-imprimirCampo(CJ.jogo.campo)
+imprimirCampo()
 sg.popup(CJ.jogo.modo)
 
 
@@ -36,12 +36,16 @@ while True:
 
     if CJ.jogo.modo[0] == "Edição":
         comando("")
+        imprimirCampo()
 
     if CJ.jogo.modo[0] == "Sair":
         break
         
     while CJ.jogo.modo[1] == "Movimentação":
+        if CJ.jogo.modo[0] == "Sair":
+            break   
         if CJ.jogo.modo[2] == "":
+            imprimirCampo()
             sg.popup("Veremos quem se move primeiro")
             al = np.random.randint(2)
             if al == 1:
@@ -52,12 +56,14 @@ while True:
                 sg.popup("O Inimigo começa!")
         CJ.jogo.modo[1] = "Movimentação"
         if CJ.jogo.modo[2] == "J":
-            if CJ.jogo.movimentoJ == None: CJ.jogo.movimentoJ = CM.Movimento(CJ.jogo.jogador)
-            if CJ.jogo.movimentoI == None: CJ.jogo.movimentoI = CM.Movimento(CJ.jogo.inimigo)
+            if CJ.jogo.movimentoJ == None: 
+                CJ.jogo.movimentoJ = CM.Movimento(CJ.jogo.jogador)
+            if CJ.jogo.movimentoI == None: 
+                CJ.jogo.movimentoI = CM.Movimento(CJ.jogo.inimigo)
             if CJ.jogo.movimentoJ.movimentorestante <= 0:
                 if CJ.jogo.movimentoI.movimentorestante <= 0:
                     FG.batalha()
-                    imprimirCampo(CJ.jogo.campo)
+                    imprimirCampo()
                 else: FG.passarvez()
             else:
                 layout =[
@@ -72,10 +78,10 @@ while True:
                 window.close()
                 if event == "OK":
                     comando(values[0])
-                    imprimirCampo(CJ.jogo.campo)
+                    imprimirCampo()
                 else: 
                     CJ.jogo.movimentoJ.direcionar(event)
-                    imprimirCampo(CJ.jogo.campo)
+                    imprimirCampo()
         elif CJ.jogo.modo[2] == "I":
             if CJ.jogo.movimentoI == None: CJ.jogo.movimentoI = CM.Movimento(CJ.jogo.inimigo)
             if CJ.jogo.movimentoJ == None: CJ.jogo.movimentoJ = CM.Movimento(CJ.jogo.jogador)
@@ -83,12 +89,12 @@ while True:
                 if CJ.jogo.movimentoI.movimentorestante <= 0:
                     if CJ.jogo.movimentoJ.movimentorestante <= 0:
                         FG.batalha()
-                        imprimirCampo(CJ.jogo.campo)
+                        imprimirCampo()
                     else: FG.passarvez()
                 else:
                     CJ.jogo.movimentoI.direcionar("?")
-        imprimirCampo(CJ.jogo.campo)
-    imprimirCampo(CJ.jogo.campo)
+        imprimirCampo()
+    imprimirCampo()
     
     while CJ.jogo.modo[1] == "Batalha":
         if CJ.jogo.batalha == None:
@@ -112,7 +118,7 @@ while True:
             continue
 
         if CJ.jogo.modo[2] == "J":
-
+            botoes = FG.definirBotões()
             if CJ.jogo.batalha.estagio == -1:
                 jogador = [
                     [sg.Text('Nome:'), sg.T(' '  * 3), sg.Text(CJ.jogo.jogador.nome)],
@@ -122,9 +128,12 @@ while True:
                     [sg.Text("",size=(30, 2),background_color="white",text_color="black",key="-nome-" )],
                     [sg.Text("Selecione uma carta abaixo",size=(30, 10),background_color="white",text_color="black",key="-desc-" )],
                     [sg.Checkbox('Ocultar?'), sg.Checkbox('Preservar?'), sg.Button("OK")],
-                    [sg.Button(CJ.jogo.jogador.cartas[list(CJ.jogo.jogador.cartas.keys())[0]].nome, key="DefinirCarta1"+CJ.jogo.jogador.cartas[list(CJ.jogo.jogador.cartas.keys())[0]].nome),sg.Button(CJ.jogo.jogador.cartas[list(CJ.jogo.jogador.cartas.keys())[1]].nome, key="DefinirCarta2"+CJ.jogo.jogador.cartas[list(CJ.jogo.jogador.cartas.keys())[1]].nome)],
-                    [sg.Button(CJ.jogo.jogador.cartas[list(CJ.jogo.jogador.cartas.keys())[2]].nome, key="DefinirCarta3"+CJ.jogo.jogador.cartas[list(CJ.jogo.jogador.cartas.keys())[2]].nome),sg.Button(CJ.jogo.jogador.cartas[list(CJ.jogo.jogador.cartas.keys())[3]].nome, key="DefinirCarta4"+CJ.jogo.jogador.cartas[list(CJ.jogo.jogador.cartas.keys())[3]].nome)]
-                    ]
+                    [botoes[1],botoes[2]],
+                    [botoes[3],botoes[4]],
+                    [botoes[5],botoes[6]],
+                    [botoes[7],botoes[8]],
+                    [botoes[9],botoes[10]]
+                            ]
 
                 inimigo = [
                     [sg.Text('Nome:'), sg.T(' '  * 3), sg.Text(CJ.jogo.inimigo.nome)],
@@ -133,9 +142,12 @@ while True:
                     [sg.T(' '  * 3)],
                     [sg.Text("",size=(30, 2),background_color="white",text_color="black",key="-nome-" )],
                     [sg.Text("",size=(30, 10),background_color="white",text_color="black",key="-desc-" )],
-                    [sg.Button(CJ.jogo.inimigo.cartas[list(CJ.jogo.inimigo.cartas.keys())[0]].nome, key="InfoCarta1"+CJ.jogo.inimigo.cartas[list(CJ.jogo.inimigo.cartas.keys())[0]].nome),sg.Button(CJ.jogo.inimigo.cartas[list(CJ.jogo.inimigo.cartas.keys())[1]].nome, key="InfoCarta2"+CJ.jogo.inimigo.cartas[list(CJ.jogo.inimigo.cartas.keys())[1]].nome)],
-                    [sg.Button(CJ.jogo.inimigo.cartas[list(CJ.jogo.inimigo.cartas.keys())[2]].nome, key="InfoCarta3"+CJ.jogo.inimigo.cartas[list(CJ.jogo.inimigo.cartas.keys())[2]].nome),sg.Button(CJ.jogo.inimigo.cartas[list(CJ.jogo.inimigo.cartas.keys())[3]].nome, key="InfoCarta4"+CJ.jogo.inimigo.cartas[list(CJ.jogo.inimigo.cartas.keys())[3]].nome)]
-                        ]
+                    [botoes[11],botoes[12]],
+                    [botoes[13],botoes[14]],
+                    [botoes[15],botoes[16]],
+                    [botoes[17],botoes[18]],
+                    [botoes[19],botoes[20]]
+                      ]
 
                 layout = [[sg.Column(jogador),sg.Text("Turno Atual:"+str(6-int(CJ.jogo.batalha.rodadas))),sg.Column(inimigo)]]
 
@@ -147,27 +159,20 @@ while True:
                         event, value = window.read()
                         if list(event)[0] == "D":
                             carta = event.replace("DefinirCarta","")
-                            carta = list(carta)                           
-                            ordem = carta[0]
-                            del carta[0]
-                            carta = "".join(carta) 
-                            window["-nome-"].update(DCC[carta].nome)
-                            window["-desc-"].update(DCC[carta].desc)  
+                            window["-nome-"].update(CJ.jogo.jogador.cartas["Carta"+carta].nome)
+                            window["-desc-"].update(CJ.jogo.jogador.cartas["Carta"+carta].tipo+"\n"+CJ.jogo.jogador.cartas["Carta"+carta].desc)  
                         elif list(event)[0] == "I":
-                            carta = event.replace("Info","")
-                            carta = list(carta)
-                            del carta[0]
-                            carta = "".join(carta)
-                            layout2 = [[sg.Text(DCC[carta].nome)],
-                                    [sg.Text(DCC[carta].desc)],
+                            carta = event.replace("InfoCarta","")
+                            layout2 = [[sg.Text(CJ.jogo.inimigo.cartas["Carta"+carta].nome)],
+                                    [sg.Text(CJ.jogo.inimigo.cartas["Carta"+carta].tipo+"\n"+CJ.jogo.inimigo.cartas["Carta"+carta].desc)],
                                     [sg.Button("OK")]
                                     ]
                             janelinha = sg.Window("Carta",layout2) 
                             event, value = janelinha.read()
                             janelinha.close()
                         else:
-                            CJ.jogo.batalha.primeirarodada[0]=carta
-                            CJ.jogo.jogador.cartas.pop("Carta "+ordem)
+                            CJ.jogo.batalha.primeirarodada[0]=CJ.jogo.jogador.cartas["Carta"+carta]
+                            CJ.jogo.jogador.cartas.pop("Carta"+carta)
                             FG.passarvez()
                             window.close()
                             break
@@ -178,12 +183,15 @@ while True:
                     [sg.Text('Vida'), sg.T(' '  * 3), sg.Text(CJ.jogo.jogador.vida)],
                     [sg.Text('Mente'), sg.T(' '  * 3), sg.Text(CJ.jogo.jogador.mente)],
                     [sg.T(' '  * 3)],
-                    [sg.Button(CJ.jogo.batalha.primeirarodada[0], key="InfoCarta5"+CJ.jogo.batalha.primeirarodada[0])],
+                    [botoes[11]],
                     [sg.Text("",size=(30, 2),background_color="white",text_color="black",key="-nome-" )],
                     [sg.Text("Selecione uma carta abaixo",size=(30, 10),background_color="white",text_color="black",key="-desc-" )],
                     [sg.Checkbox('Ocultar?'), sg.Checkbox('Preservar?'), sg.Button("OK")],
-                    [sg.Button(CJ.jogo.jogador.cartas[list(CJ.jogo.jogador.cartas.keys())[0]].nome, key="DefinirCarta1"+CJ.jogo.jogador.cartas[list(CJ.jogo.jogador.cartas.keys())[0]].nome),sg.Button(CJ.jogo.jogador.cartas[list(CJ.jogo.jogador.cartas.keys())[1]].nome, key="DefinirCarta2"+CJ.jogo.jogador.cartas[list(CJ.jogo.jogador.cartas.keys())[1]].nome)],
-                    [sg.Button(CJ.jogo.jogador.cartas[list(CJ.jogo.jogador.cartas.keys())[2]].nome, key="DefinirCarta3"+CJ.jogo.jogador.cartas[list(CJ.jogo.jogador.cartas.keys())[2]].nome),sg.Button(CJ.jogo.jogador.cartas[list(CJ.jogo.jogador.cartas.keys())[3]].nome, key="DefinirCarta4"+CJ.jogo.jogador.cartas[list(CJ.jogo.jogador.cartas.keys())[3]].nome)]
+                    [botoes[1],botoes[2]],
+                    [botoes[3],botoes[4]],
+                    [botoes[5],botoes[6]],
+                    [botoes[7],botoes[8]],
+                    [botoes[9],botoes[10]]
                     ]
 
                 inimigo = [
@@ -191,11 +199,14 @@ while True:
                     [sg.Text('Vida'), sg.T(' '  * 3), sg.Text(CJ.jogo.inimigo.vida)],
                     [sg.Text('Mente'), sg.T(' '  * 3), sg.Text(CJ.jogo.inimigo.mente)],
                     [sg.T(' '  * 3)],
-                    [sg.Button(CJ.jogo.batalha.primeirarodada[1], key="InfoCarta6"+CJ.jogo.batalha.primeirarodada[1])],
+                    [botoes[12]],
                     [sg.Text("",size=(30, 2),background_color="white",text_color="black",key="-nome-" )],
                     [sg.Text("",size=(30, 10),background_color="white",text_color="black",key="-desc-" )],
-                    [sg.Button(CJ.jogo.inimigo.cartas[list(CJ.jogo.inimigo.cartas.keys())[0]].nome, key="InfoCarta1"+CJ.jogo.inimigo.cartas[list(CJ.jogo.inimigo.cartas.keys())[0]].nome),sg.Button(CJ.jogo.inimigo.cartas[list(CJ.jogo.inimigo.cartas.keys())[1]].nome, key="InfoCarta2"+CJ.jogo.inimigo.cartas[list(CJ.jogo.inimigo.cartas.keys())[1]].nome)],
-                    [sg.Button(CJ.jogo.inimigo.cartas[list(CJ.jogo.inimigo.cartas.keys())[2]].nome, key="InfoCarta3"+CJ.jogo.inimigo.cartas[list(CJ.jogo.inimigo.cartas.keys())[2]].nome),sg.Button(CJ.jogo.inimigo.cartas[list(CJ.jogo.inimigo.cartas.keys())[3]].nome, key="InfoCarta4"+CJ.jogo.inimigo.cartas[list(CJ.jogo.inimigo.cartas.keys())[3]].nome)]
+                    [botoes[11],botoes[12]],
+                    [botoes[13],botoes[14]],
+                    [botoes[15],botoes[16]],
+                    [botoes[17],botoes[18]],
+                    [botoes[19],botoes[20]]
                         ]
 
                 layout = [[sg.Column(jogador),sg.Text("Turno Atual:"+str(6-int(CJ.jogo.batalha.rodadas))),sg.Column(inimigo)]]
@@ -208,27 +219,36 @@ while True:
                         event, value = window.read()
                         if list(event)[0] == "D":
                             carta = event.replace("DefinirCarta","")
-                            carta = list(carta)
-                            ordem = carta[0]
-                            del carta[0]
-                            carta = "".join(carta) 
-                            window["-nome-"].update(DCC[carta].nome)
-                            window["-desc-"].update(DCC[carta].desc)  
+                            window["-nome-"].update(CJ.jogo.jogador.cartas["Carta"+carta].nome)
+                            window["-desc-"].update(CJ.jogo.jogador.cartas["Carta"+carta].tipo+"\n"+CJ.jogo.jogador.cartas["Carta"+carta].desc)  
                         elif list(event)[0] == "I":
-                            carta = event.replace("Info","")
-                            carta = list(carta)
-                            del carta[0]
-                            carta = "".join(carta)
-                            layout2 = [[sg.Text(DCC[carta].nome)],
-                                    [sg.Text(DCC[carta].desc)],
+                            carta = event.replace("InfoCarta","")
+                            layout2 = [[sg.Text(CJ.jogo.inimigo.cartas["Carta"+carta].nome)],
+                                    [sg.Text(CJ.jogo.inimigo.cartas["Carta"+carta].tipo+"\n"+CJ.jogo.inimigo.cartas["Carta"+carta].desc)],
+                                    [sg.Button("OK")]
+                                    ]
+                            janelinha = sg.Window("Carta",layout2) 
+                            event, value = janelinha.read()
+                            janelinha.close()
+                        elif event == "Rever Carta J":
+                            layout2 = [[sg.Text(CJ.jogo.batalha.primeirarodada[0].nome)],
+                                    [sg.Text(CJ.jogo.batalha.primeirarodada[0].tipo+"\n"+CJ.jogo.batalha.primeirarodada[0].desc)],
+                                    [sg.Button("OK")]
+                                    ]
+                            janelinha = sg.Window("Carta",layout2) 
+                            event, value = janelinha.read()
+                            janelinha.close()
+                        elif event == "Rever Carta I":
+                            layout2 = [[sg.Text(CJ.jogo.batalha.primeirarodada[1].nome)],
+                                    [sg.Text(CJ.jogo.batalha.primeirarodada[1].tipo+"\n"+CJ.jogo.batalha.primeirarodada[1].desc)],
                                     [sg.Button("OK")]
                                     ]
                             janelinha = sg.Window("Carta",layout2) 
                             event, value = janelinha.read()
                             janelinha.close()
                         else:
-                            CJ.jogo.batalha.segundarodada[0] = carta
-                            CJ.jogo.jogador.cartas.pop("Carta "+ordem)
+                            CJ.jogo.batalha.primeirarodada[0]=CJ.jogo.jogador.cartas["Carta"+carta]
+                            CJ.jogo.jogador.cartas.pop("Carta"+carta)
                             FG.passarvez()
                             window.close()
                             break

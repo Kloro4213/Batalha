@@ -74,11 +74,13 @@ def comando(entrada):
             elif CJ.jogo.temjogador == False:
                 sg.popup("Primeiro invoque um jogador!")
             else:
+                CJ.jogo.definirbaralhos()
+                FG.ReporCampo()
                 sg.popup("O CJ.jogo realmente começou")
                 CJ.jogo.modo[1] = "Movimentação"
                 CJ.jogo.modo[0] = "Jogo"
         case "IN":
             for carta in CJ.jogo.jogador.cartas:
-                sg.popup(carta)
+                sg.popup(carta+" do jogador: "+CJ.jogo.jogador.cartas[carta].nome)
             for carta in CJ.jogo.inimigo.cartas:
-                sg.popup(carta)
+                sg.popup(carta+" do inimigo: "+CJ.jogo.inimigo.cartas[carta].nome)

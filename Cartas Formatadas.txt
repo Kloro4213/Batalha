@@ -1,0 +1,37 @@
+0—Carta branca—Branca—Esta carta se transforma em qualquer carta básica de seu baralho
+1—Golpe básico—Ataque—Cause 5 de dano
+2—Manobra básica—Manobra—desvie 3 e bloqueie 5
+3—Talento básico—Talento—cause 1 de dano mental
+4—Finta—Manobra—Desvie 6. Desvie mais 4 contra armas.
+5—Psiquê atrasada—Manobra—Clash:Suspenda a carta do oponente.
+6—Vazar—Manobra—Desvie 8. Pioneiro: Desvie mais 5 e consuma a segunda carta.
+7—Aparar—Manobra—Bloqueie 9. Bloqueie mais 6 contra armas.
+8—Mirar direitinho—Manobra—Consuma um ataque da sua mão e ganhe 12 de foco. Use o ataque consumido no final da rodada com dano extra igual a seu foco.
+9—Espada rápida—Ataque—Cause 11 de dano.
+10—Espada iôiô—Ataque—Cause 5 de dano duas vezes.
+11—Cotovelada—Ataque—Cause 8 de dano. Clash: Desvie 5.
+12—Corte duplo—Ataque—Cause 7 de dano. Pioneiro: Transforme a sua segunda carta numa cópia desta.
+13—Tiro de gude—Ataque—Cause 7 de dano á distância. Estilhaçar: Enfraqueça 2. Em cheio: Fragilize 2.
+14—Cabeçada—Ataque—Cause 15 de dano. Fique confuso 2.
+15—Punho de ferro—Ataque—Cause 3 de dano 3 vezes. Resvalar: Crie um Tiro de Gude na mão.
+16—Lapso Mental—Talento—Todas as cartas desta rodada serão consumidas no final. Se o inimigo tiver cartas na mão que sejam iguais a qualquer carta consumida, elas se consomem também.
+17—Peso na Consciência—Talento—Até o fim da luta, manter cartas custa 1 de mente adicional para o oponente.
+18—Espetar pensamento—Talento—Cause 3 de dano mental.
+19—Imagem Falsa—Talento—Desvie 15.
+20—Grito desconcertante—Talento—Cause dano igual à mente que falta ao adversário x 4.
+21—Golpe básico—Ataque—Cause 3 de dano, desvie 3
+22—Manobra básica—Manobra—prepare 5
+23—Talento básico—Talento—enfraqueça 2.
+24—Subir na onda—Manobra—Afaste—se até o fim da rodada. Evolua Arpão e Caldo.
+25—Enrijecer—Manobra—Bloqueie 11.
+26—Bons Reflexos—Manobra—Desvie 5. Clash: Cause 4 de dano.
+27—Arpão—Ataque—Cause 6 de dano. Evoluir: à distância.
+28—Pranchada—Ataque—Cause 8 de dano. Clash: Bloqueie 4.
+29—Porrada—Ataque—Cause 9 de dano.
+30—Caldo—Talento—Enfraqueça 3. Evoluir: Cause 2 de dano mental.
+31—Hidratar-se—Talento—Cure 3, prepare 2. Repita para cada Carta Regional do Mar que você tiver na mão.
+32—Lançar Rede—Manobra—Clash: consuma até 3 ataques da mão do oponente.
+33—Mergulhar—Manobra—Afaste—se.
+34—Remada—Ataque—Aproxime—se. Cause 7 de dano.
+35—Redemoinho—Talento—Todos ganham confuso 2. Ganhe 2 frágil e enfraqueça 2.
+36—Tacar Água—Talento—Enfraqueça 1. Combo: cause 1 de dano mental.

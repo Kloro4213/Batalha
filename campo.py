@@ -100,10 +100,14 @@ while True:
         if CJ.jogo.batalha == None:
             CJ.jogo.batalha = CB.Batalha()
             sg.popup("A BATALHA COMEÇOU")
-
+        botoes = FG.definirBotões()
+        sg.popup("tamo aqui em cima")
         if CJ.jogo.batalha.estagio == -1:
             if CJ.jogo.batalha.primeirarodada[0] != None and CJ.jogo.batalha.primeirarodada[1] != None:
                 CJ.jogo.batalha.estagio = 1
+        elif CJ.jogo.batalha.segundarodada[0] != None and CJ.jogo.batalha.segundarodada[1] != None:
+            CJ.jogo.batalha.resolverRodadas()
+
 
         if CJ.jogo.modo[2] == "I":
             numero = np.random.randint(len(CJ.jogo.inimigo.cartas))+1
@@ -111,14 +115,15 @@ while True:
             if CJ.jogo.batalha.estagio == -1:
                 CJ.jogo.batalha.primeirarodada[1] = carta
                 CJ.jogo.inimigo.cartas.pop("Carta "+str(numero))
+                CJ.jogo.inimigo.organizarCartas()
             elif CJ.jogo.batalha.estagio == 1:
                 CJ.jogo.batalha.segundarodada[1] = carta
                 CJ.jogo.inimigo.cartas.pop("Carta "+str(numero))
+                CJ.jogo.inimigo.organizarCartas()
             FG.passarvez()
             continue
 
         if CJ.jogo.modo[2] == "J":
-            botoes = FG.definirBotões()
             if CJ.jogo.batalha.estagio == -1:
                 jogador = [
                     [sg.Text('Nome:'), sg.T(' '  * 3), sg.Text(CJ.jogo.jogador.nome)],
@@ -134,14 +139,14 @@ while True:
                     [botoes[7],botoes[8]],
                     [botoes[9],botoes[10]]
                             ]
-
+ 
                 inimigo = [
                     [sg.Text('Nome:'), sg.T(' '  * 3), sg.Text(CJ.jogo.inimigo.nome)],
                     [sg.Text('Vida'), sg.T(' '  * 3), sg.Text(CJ.jogo.inimigo.vida)],
                     [sg.Text('Mente'), sg.T(' '  * 3), sg.Text(CJ.jogo.inimigo.mente)],
                     [sg.T(' '  * 3)],
-                    [sg.Text("",size=(30, 2),background_color="white",text_color="black",key="-nome-" )],
-                    [sg.Text("",size=(30, 10),background_color="white",text_color="black",key="-desc-" )],
+                    [botoes[23]],
+                    [botoes[24]],
                     [botoes[11],botoes[12]],
                     [botoes[13],botoes[14]],
                     [botoes[15],botoes[16]],
@@ -173,6 +178,7 @@ while True:
                         else:
                             CJ.jogo.batalha.primeirarodada[0]=CJ.jogo.jogador.cartas["Carta"+carta]
                             CJ.jogo.jogador.cartas.pop("Carta"+carta)
+                            CJ.jogo.jogador.organizarCartas()
                             FG.passarvez()
                             window.close()
                             break
@@ -183,7 +189,7 @@ while True:
                     [sg.Text('Vida'), sg.T(' '  * 3), sg.Text(CJ.jogo.jogador.vida)],
                     [sg.Text('Mente'), sg.T(' '  * 3), sg.Text(CJ.jogo.jogador.mente)],
                     [sg.T(' '  * 3)],
-                    [botoes[11]],
+                    [botoes[21]],
                     [sg.Text("",size=(30, 2),background_color="white",text_color="black",key="-nome-" )],
                     [sg.Text("Selecione uma carta abaixo",size=(30, 10),background_color="white",text_color="black",key="-desc-" )],
                     [sg.Checkbox('Ocultar?'), sg.Checkbox('Preservar?'), sg.Button("OK")],
@@ -199,9 +205,9 @@ while True:
                     [sg.Text('Vida'), sg.T(' '  * 3), sg.Text(CJ.jogo.inimigo.vida)],
                     [sg.Text('Mente'), sg.T(' '  * 3), sg.Text(CJ.jogo.inimigo.mente)],
                     [sg.T(' '  * 3)],
-                    [botoes[12]],
-                    [sg.Text("",size=(30, 2),background_color="white",text_color="black",key="-nome-" )],
-                    [sg.Text("",size=(30, 10),background_color="white",text_color="black",key="-desc-" )],
+                    [botoes[22]],
+                    [botoes[25]],
+                    [botoes[26]],
                     [botoes[11],botoes[12]],
                     [botoes[13],botoes[14]],
                     [botoes[15],botoes[16]],
@@ -249,6 +255,7 @@ while True:
                         else:
                             CJ.jogo.batalha.primeirarodada[0]=CJ.jogo.jogador.cartas["Carta"+carta]
                             CJ.jogo.jogador.cartas.pop("Carta"+carta)
+                            CJ.jogo.jogador.organizarCartas()
                             FG.passarvez()
                             window.close()
                             break

@@ -1,24 +1,20 @@
-import PySimpleGUI as sg
-import numpy as np
-
-cartas = {
-    "Bola de Fogo":"Lança uma poderosíssima bola de fogo",
-    "Soco potente": "Desfere um murraço imprevisível",
-    "Cuspe Ácido": "Lança um esguicho de solução corrosiva",
-    "3 Oitão": "O alvo vira queijo suíço"}
-
-cartos = ["Bola de Fogo","Soco potente","Cuspe Ácido","3 Oitão"]
-
-escolha = cartas[cartos[np.random.randint(len(cartos))]]
+class Jogador:
+    def __init__(self,y=None,x=None,vida=None, cartas = {},nome=""):
+        self.vida=vida
+        self.cartas=cartas
+        self.y=y
+        self.x=x
+        self.nome=nome
+        self.mente = None
+        self.baralho = []
+        self.cartasbasicas = []
 
 
+kloro = Jogador(0,0,100,None,"Kloro")
 
+jogador = kloro
 
-layout = [
-    []
+jogador.vida -=24
 
-
-
-]
-
-
+print(jogador.vida)
+print(kloro.vida)

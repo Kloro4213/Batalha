@@ -10,11 +10,14 @@ class Jogador:
         self.mente = None
         self.baralho = []
         self.cartasbasicas = []
-
+        self.desvio = 0
+        self.bloqueio = 0
+        self.status = {}
 
 
     
     def coletarCarta(self,carta):
+        carta.dono = self
         if carta.id not in self.baralho:
             if carta.tipo == "Ataque":
                 carta = DCC[self.cartasbasicas[0]]
@@ -43,3 +46,8 @@ class Jogador:
         elif "Carta 10" not in self.cartas:
             self.cartas.update({"Carta 10":carta})
         
+    def organizarCartas(self):
+        lcartas = list(self.cartas.values())
+        self.cartas = {}
+        for carta in lcartas:
+            self.coletarCarta(carta)

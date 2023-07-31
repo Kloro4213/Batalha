@@ -166,53 +166,53 @@ def definirBotões():
         botaoJ10 = sg.Button(CJ.jogo.jogador.cartas[list(CJ.jogo.jogador.cartas.keys())[9]].nome, key="Definir"+list(CJ.jogo.jogador.cartas.keys())[9])
     else:
         botaoJ10 = sg.Text("")
-    if len(CJ.jogo.jogador.cartas)>=1:
-        botaoI1 = sg.Button(CJ.jogo.jogador.cartas[list(CJ.jogo.jogador.cartas.keys())[0]].nome, key="Info"+list(CJ.jogo.jogador.cartas.keys())[0])
+    if len(CJ.jogo.inimigo.cartas)>=1:
+        botaoI1 = sg.Button(CJ.jogo.inimigo.cartas[list(CJ.jogo.inimigo.cartas.keys())[0]].nome, key="Info"+list(CJ.jogo.inimigo.cartas.keys())[0])
     else:
         botaoI1 = sg.Text("")
 
-    if len(CJ.jogo.jogador.cartas)>=2:
-        botaoI2 = sg.Button(CJ.jogo.jogador.cartas[list(CJ.jogo.jogador.cartas.keys())[1]].nome, key="Info"+list(CJ.jogo.jogador.cartas.keys())[1])
+    if len(CJ.jogo.inimigo.cartas)>=2:
+        botaoI2 = sg.Button(CJ.jogo.inimigo.cartas[list(CJ.jogo.inimigo.cartas.keys())[1]].nome, key="Info"+list(CJ.jogo.inimigo.cartas.keys())[1])
     else:
         botaoI2 = sg.Text("")
 
-    if len(CJ.jogo.jogador.cartas)>=3:
-        botaoI3 = sg.Button(CJ.jogo.jogador.cartas[list(CJ.jogo.jogador.cartas.keys())[2]].nome, key="Info"+list(CJ.jogo.jogador.cartas.keys())[2])
+    if len(CJ.jogo.inimigo.cartas)>=3:
+        botaoI3 = sg.Button(CJ.jogo.inimigo.cartas[list(CJ.jogo.inimigo.cartas.keys())[2]].nome, key="Info"+list(CJ.jogo.inimigo.cartas.keys())[2])
     else:
         botaoI3 = sg.Text("")
 
-    if len(CJ.jogo.jogador.cartas)>=4:
-        botaoI4 = sg.Button(CJ.jogo.jogador.cartas[list(CJ.jogo.jogador.cartas.keys())[3]].nome, key="Info"+list(CJ.jogo.jogador.cartas.keys())[3])
+    if len(CJ.jogo.inimigo.cartas)>=4:
+        botaoI4 = sg.Button(CJ.jogo.inimigo.cartas[list(CJ.jogo.inimigo.cartas.keys())[3]].nome, key="Info"+list(CJ.jogo.inimigo.cartas.keys())[3])
     else:
         botaoI4 = sg.Text("")
 
-    if len(CJ.jogo.jogador.cartas)>=5:
-        botaoI5 = sg.Button(CJ.jogo.jogador.cartas[list(CJ.jogo.jogador.cartas.keys())[4]].nome, key="Info"+list(CJ.jogo.jogador.cartas.keys())[4])
+    if len(CJ.jogo.inimigo.cartas)>=5:
+        botaoI5 = sg.Button(CJ.jogo.inimigo.cartas[list(CJ.jogo.inimigo.cartas.keys())[4]].nome, key="Info"+list(CJ.jogo.inimigo.cartas.keys())[4])
     else:
         botaoI5 = sg.Text("")
 
-    if len(CJ.jogo.jogador.cartas)>=6:
-        botaoI6 = sg.Button(CJ.jogo.jogador.cartas[list(CJ.jogo.jogador.cartas.keys())[5]].nome, key="Info"+list(CJ.jogo.jogador.cartas.keys())[5])
+    if len(CJ.jogo.inimigo.cartas)>=6:
+        botaoI6 = sg.Button(CJ.jogo.inimigo.cartas[list(CJ.jogo.inimigo.cartas.keys())[5]].nome, key="Info"+list(CJ.jogo.inimigo.cartas.keys())[5])
     else:
         botaoI6 = sg.Text("")
 
-    if len(CJ.jogo.jogador.cartas)>=7:
-        botaoI7 = sg.Button(CJ.jogo.jogador.cartas[list(CJ.jogo.jogador.cartas.keys())[6]].nome, key="Info"+list(CJ.jogo.jogador.cartas.keys())[6])
+    if len(CJ.jogo.inimigo.cartas)>=7:
+        botaoI7 = sg.Button(CJ.jogo.inimigo.cartas[list(CJ.jogo.inimigo.cartas.keys())[6]].nome, key="Info"+list(CJ.jogo.inimigo.cartas.keys())[6])
     else:
         botaoI7 = sg.Text("")
 
-    if len(CJ.jogo.jogador.cartas)>=8:
-        botaoI8 = sg.Button(CJ.jogo.jogador.cartas[list(CJ.jogo.jogador.cartas.keys())[7]].nome, key="Info"+list(CJ.jogo.jogador.cartas.keys())[7])
+    if len(CJ.jogo.inimigo.cartas)>=8:
+        botaoI8 = sg.Button(CJ.jogo.inimigo.cartas[list(CJ.jogo.inimigo.cartas.keys())[7]].nome, key="Info"+list(CJ.jogo.inimigo.cartas.keys())[7])
     else:
         botaoI8 = sg.Text("")
 
-    if len(CJ.jogo.jogador.cartas)>=9:
-        botaoI9 = sg.Button(CJ.jogo.jogador.cartas[list(CJ.jogo.jogador.cartas.keys())[8]].nome, key="Info"+list(CJ.jogo.jogador.cartas.keys())[8])
+    if len(CJ.jogo.inimigo.cartas)>=9:
+        botaoI9 = sg.Button(CJ.jogo.inimigo.cartas[list(CJ.jogo.inimigo.cartas.keys())[8]].nome, key="Info"+list(CJ.jogo.inimigo.cartas.keys())[8])
     else:
         botaoI9 = sg.Text("")
 
-    if len(CJ.jogo.jogador.cartas)==10:
-        botaoI10 = sg.Button(CJ.jogo.jogador.cartas[list(CJ.jogo.jogador.cartas.keys())[9]].nome, key="Info"+list(CJ.jogo.jogador.cartas.keys())[9])
+    if len(CJ.jogo.inimigo.cartas)==10:
+        botaoI10 = sg.Button(CJ.jogo.inimigo.cartas[list(CJ.jogo.inimigo.cartas.keys())[9]].nome, key="Info"+list(CJ.jogo.inimigo.cartas.keys())[9])
     else:
         botaoI10 = sg.Text("")
     
@@ -223,9 +223,19 @@ def definirBotões():
 
     if CJ.jogo.batalha.primeirarodada[1] != None:
         botaoIR = sg.Button(CJ.jogo.batalha.primeirarodada[1].nome, key="Rever Carta I")
+        caixinha1 = sg.Text(CJ.jogo.batalha.primeirarodada[1].nome,size=(30, 2),background_color="white",text_color="black" )
+        caixona1 = sg.Text(CJ.jogo.batalha.primeirarodada[1].tipo+"\n"+CJ.jogo.batalha.primeirarodada[1].desc,size=(30, 10),background_color="white",text_color="black")
     else:
         botaoIR = sg.Text("")
+        caixinha1 = sg.Text("",size=(30, 2),background_color="white",text_color="black")
+        caixona1 = sg.Text("",size=(30, 10),background_color="white",text_color="black")
+
+    if CJ.jogo.batalha.segundarodada[1] != None:
+        caixinha2 = sg.Text(CJ.jogo.batalha.segundarodada[1].nome,size=(30, 2),background_color="white",text_color="black")
+        caixona2 = sg.Text(CJ.jogo.batalha.segundarodada[1].tipo+"\n"+CJ.jogo.batalha.segundarodada[1].desc,size=(30, 10),background_color="white",text_color="black")
+    else:
+        caixinha2 = sg.Text("",size=(30, 2),background_color="white",text_color="black")
+        caixona2 = sg.Text("",size=(30, 10),background_color="white",text_color="black")
 
 
-
-    return ["",botaoJ1,botaoJ2,botaoJ3,botaoJ4,botaoJ5,botaoJ6,botaoJ7,botaoJ8,botaoJ9,botaoJ10,botaoI1,botaoI2,botaoI3,botaoI4,botaoI5,botaoI6,botaoI7,botaoI8,botaoI9,botaoI10,botaoJR,botaoIR]
+    return ["",botaoJ1,botaoJ2,botaoJ3,botaoJ4,botaoJ5,botaoJ6,botaoJ7,botaoJ8,botaoJ9,botaoJ10,botaoI1,botaoI2,botaoI3,botaoI4,botaoI5,botaoI6,botaoI7,botaoI8,botaoI9,botaoI10,botaoJR,botaoIR,caixinha1,caixona1,caixinha2,caixona2]

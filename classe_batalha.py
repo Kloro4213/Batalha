@@ -12,3 +12,14 @@ class Batalha:
         self.primeirarodada = [None,None]
         self.segundarodada = [None,None]
         self.estagio = -1
+        self.pilha = {}
+
+    def resolverRodadas(self):
+        cartaJogador = self.primeirarodada[0]
+        cartaInimigo = self.primeirarodada[0]
+        ordem = cartaJogador.tipo+" vs "+cartaInimigo.tipo
+        match ordem:
+            case "Manobra vs Manobra":
+            case "Manobra vs Ataque":
+            case "Manobra vs Talento":
+            case "Ataque vs Manobra":

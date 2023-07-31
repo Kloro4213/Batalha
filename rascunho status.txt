@@ -1,1 +1,5 @@
-Veneno - valor numérico. o alvo toma dano igual ao val
+dano constante - dano e duração. o alvo toma dano igual ao valor dele e diminui a duração em 1 no final do turno.
+fraqueza - duração - o alvo causa 25% a menos de dano e diminui a duração em 1 no final do turno.
+fragilidade - duração - o alvo recebe 25% a mais de dano causado por cartas e diminui a duração em 1 no final do turno.
+confuso - duração - o alvo só consegue usar cartas aleatórias em seus turnos
+preparo - valor - O próximo dano, desvio ou bloqueio que o alvo causar é incrementado por esse valor

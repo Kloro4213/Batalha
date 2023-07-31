@@ -1,41 +1,39 @@
 import numpy as np
 import PySimpleGUI as sg
-import classe_efeito as CE
+import classe_status as CE
 from colorama import Fore, Back, Style
 import math
 
 class Carta:
-    def __init__(self,id,nome,tipo,efeito=None,desc=None):
+    def __init__(self,id,nome,tipo,efeito={},desc=None):
         self.id = id
         self.nome = nome
         self.tipo = tipo
         self.desc = desc
         self.efeito = efeito
         self.dono = None
-        self.log = {
-        }
-
-
-
-
+        self.log = {}
 
 
     def resolver(self):
         for efeito in self.efeito:
             efeito()
         
-    def causarDano(alvo,dano):
+    def causarDano(self,alvo,dano):
         danofinal = dano
-        if alvo.bloqueio > 0:
+        if "Fraqueza" in self.dono.acessarStatus():
+            danofinal = math.floor(danofinal*0.75)
+        if "Fragilidade" in alvo.acessarStatus():
+            danofinal = math.floor(danofinal*1.25)
+        if alvo.acessarBloqueio() > 0:
             temp = danofinal
-            danofinal -= alvo.bloqueio
-            alvo.bloqueio -= temp
-            if alvo.bloqueio < 0: alvo.bloqueio = 0
+            danofinal -= alvo.acessarBloqueio()
             if danofinal < 0: danofinal = 0
-        if alvo.desvio >= danofinal:
-            alvo.desvio = math.floor(alvo.desvio/2)
+            alvo.perderBloqueio(danofinal)
+        if alvo.acessarDesvio() >= danofinal:
+            alvo.definirDesvio = math.floor(alvo.acessarDesvio()/2)
             danofinal = 0
-        alvo.vida -= danofinal
+        alvo.perderVida(danofinal)
 
     def bloquear(self,quantidade):
         self.dono.bloqueio += quantidade
@@ -44,11 +42,10 @@ class Carta:
         self.dono.desvio += quantidade
         
     def causarStatus(alvo,status):
-        alvo.status.update({status.nome:status})
+        alvo.receberStatus(status)
 
     def ganharStatus(self,status):
-        self.status.update({status.nome:status})
-
+        self.dono.receberStatus(status)
 
 
 

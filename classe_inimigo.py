@@ -59,9 +59,15 @@ class Inimigo:
         self.bloqueio = valor
 
     def receberStatus(self,valor):
-        self.status += valor
+        if valor.nome in self.status:
+            if valor.acumulavel:
+                self.status.update({valor.nome:self.status[valor.nome].valor+valor.valor})
+            else:
+                self.status.update({valor.nome:valor})    
+        else:
+            self.status.update({valor.nome:valor})
     def perderStatus(self,valor):
-        self.status -= valor
+        self.status.pop(valor.nome)
     def acessarStatus(self):
         return self.status
 

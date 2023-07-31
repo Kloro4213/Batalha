@@ -1,0 +1,10 @@
+    def receberCoisa(self,valor):
+        self.coisa += valor
+        if self.coisa > MAXI: self.coisa = MAXI
+    def perderCoisa(self,valor):
+        self.coisa -= valor
+        if self.coisa < MINI: self.coisa = MINI
+    def acessarCoisa(self):
+        return self.coisa
+    def definirCoisa(self,valor):
+        self.coisa = valor

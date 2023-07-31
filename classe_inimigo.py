@@ -2,6 +2,7 @@ from dic_cartas import DCC
 
 class Inimigo:
     def __init__(self,y=None,x=None,vida=None,cartas = {},nome=""):
+        self.vidamax = vida
         self.vida=vida
         self.cartas=cartas
         self.y=y
@@ -14,9 +15,55 @@ class Inimigo:
         self.bloqueio = 0
         self.status = {}
 
+    def receberVida(self,valor):
+        self.vida += valor
+        if self.vida > self.vidamax: self.vida = self.vidamax
+    def perderVida(self,valor):
+        self.vida -= valor
+    def acessarVida(self):
+        return self.vida
+    def definirVida(self,valor):
+        self.vida = valor
 
+    def receberMente(self,valor):
+        self.mente += valor
+        if self.mente > 10: self.mente = 10
+    def perderMente(self,valor):
+        self.mente -= valor
+        if self.mente < 0: self.mente = 0
+    def acessarMente(self):
+        return self.mente
+    def definirMente(self,valor):
+        self.mente = valor
 
+    def receberDesvio(self,valor):
+        self.desvio += valor
+        if self.desvio > 999: self.desvio = 999
+    def perderDesvio(self,valor):
+        self.desvio -= valor
+        if self.desvio < 0: self.desvio = 0
+    def acessarDesvio(self):
+        return self.desvio
+    def definirDesvio(self,valor):
+        self.desvio = valor
 
+    def receberBloqueio(self,valor):
+        self.bloqueio += valor
+        if self.bloqueio > 999: self.bloqueio = 999
+    def perderBloqueio(self,valor):
+        self.bloqueio -= valor
+        if self.bloqueio < 0: self.bloqueio = 0
+    def acessarBloqueio(self):
+        return self.bloqueio
+    def definirBloqueio(self,valor):
+        self.bloqueio = valor
+
+    def receberStatus(self,valor):
+        self.status += valor
+    def perderStatus(self,valor):
+        self.status -= valor
+    def acessarStatus(self):
+        return self.status
 
 
 

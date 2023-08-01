@@ -25,11 +25,3 @@ já temos 3 até agora
 5 - outros
 
 em caso de empate de prioridades, o jogador em primeiro da luta tem vantagem
-
-a ordem na qual os efeitos são mencionados na carta importam. A prioridade só serve para decidir se, dado o par de efeitos das cartas em clash, qual dentre os dois resolve primeiro.
-Se a carta do primeiro possuir efeitos de, nessa ordem: receber status, ganhar bloqueio, Causar dano
-e a carta do segundo possuir efeitos de, nessa ordem: receber status, causar dano, Ganhar Bloqueio
-
-a ordem de efeitos será a seguinte:
-
-primeiro recebe status, primeiro ganha bloqueio, segundo recebe status, primeiro causa dano, segundo causa dano, segundo ganha bloqueio

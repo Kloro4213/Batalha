@@ -8,3 +8,16 @@
         return self.coisa
     def definirCoisa(self,valor):
         self.coisa = valor
+
+
+
+causarDano(alvo,dano)
+
+bloquear(quantidade)
+       
+desviar(quantidade)
+        
+causarStatus(alvo,status)
+        
+ganharStatus(self,status)
+        

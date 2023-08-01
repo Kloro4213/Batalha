@@ -122,3 +122,4 @@ Afastar-se: reative os ataques à distância. Ataques não-à distância não fu
 Resvalar: efeito que se ativa caso o inimigo tenha bloqueado completamente um dano 
 preparar: A próxima carta que causar dano, esquivar ou bloquear, fará com bônus igual ao preparo.
 aproximar-se: anule os efeitos de à distância e afastar-se
+suspender: A carta só resolve no final de toda a rodada

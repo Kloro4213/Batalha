@@ -1,37 +1,37 @@
-Carta branca — Branca — Esta carta se transforma em qualquer carta básica de seu baralho
-Golpe básico — Ataque — Cause 5 de dano
-Manobra básica — Manobra — desvie 3 e bloqueie 5
-Talento básico — Talento — cause 1 de dano mental
-Finta — Manobra — Desvie 6. Desvie mais 4 contra armas.
-Psiquê atrasada — Manobra — Clash:Suspenda a carta do oponente.
-Vazar — Manobra — Desvie 8. Pioneiro: Desvie mais 5 e consuma a segunda carta.
-Aparar — Manobra — Bloqueie 9. Bloqueie mais 6 contra armas.
-Mirar direitinho — Manobra — Consuma um ataque da sua mão e ganhe 12 de foco. Use o ataque consumido no final da rodada com dano extra igual a seu foco.
-Espada rápida — Ataque — Cause 11 de dano.
-Espada iôiô — Ataque — Cause 5 de dano duas vezes.
-Cotovelada — Ataque — Cause 8 de dano. Clash: Desvie 5.
-Corte duplo — Ataque — Cause 7 de dano. Pioneiro: Transforme a sua segunda carta numa cópia desta.
-Tiro de gude — Ataque — Cause 7 de dano á distância. Estilhaçar: Enfraqueça 2. Em cheio: Fragilize 2.
-Cabeçada — Ataque — Cause 15 de dano. Fique confuso 2.
-Punho de ferro — Ataque — Cause 3 de dano 3 vezes. Resvalar: Crie um Tiro de Gude na mão.
-Lapso Mental — Talento — Todas as cartas desta rodada serão consumidas no final. Se o inimigo tiver cartas na mão que sejam iguais a qualquer carta consumida, elas se consomem também.
-Peso na Consciência — Talento — Até o fim da luta, manter cartas custa 1 de mente adicional para o oponente.
-Espetar pensamento — Talento — Cause 3 de dano mental.
-Imagem Falsa — Talento — Desvie 15.
-Grito desconcertante — Talento — Cause dano igual à mente que falta ao adversário x 4.
-Golpe básico — Ataque — Cause 3 de dano, desvie 3
-Manobra básica — Manobra — prepare 5
-Talento básico — Talento — enfraqueça 2.
-Subir na onda — Manobra — Afaste—se até o fim da rodada. Evolua Arpão e Caldo.
-Enrijecer — Manobra — Bloqueie 11.
-Bons Reflexos — Manobra — Desvie 5. Clash: Cause 4 de dano.
-Arpão — Ataque — Cause 6 de dano. Evoluir: à distância.
-Pranchada — Ataque — Cause 8 de dano. Clash: Bloqueie 4.
-Porrada — Ataque — Cause 9 de dano.
-Caldo — Talento — Enfraqueça 3. Evoluir: Cause 2 de dano mental.
-Hidratar-se — Talento — Cure 3, prepare 2. Repita para cada Carta Regional do Mar que você tiver na mão.
-Lançar Rede — Manobra — Clash: consuma até 3 ataques da mão do oponente.
-Mergulhar — Manobra — Afaste—se.
-Remada — Ataque — Aproxime—se. Cause 7 de dano.
-Redemoinho — Talento — Todos ganham confuso 2. Ganhe 2 frágil e enfraqueça 2.
-Tacar Água — Talento — Enfraqueça 1. Combo: cause 1 de dano mental.
+Carta branca — Branca —  — Esta carta se transforma em qualquer carta básica de seu baralho
+Golpe básico — Ataque — Arma — Cause 5 de dano — causarDano(op,5)
+Manobra básica — Manobra —  — desvie 3 e bloqueie 5 — desviar(3);bloquear(5)
+Talento básico — Talento — Psíquico — cause 1 de dano mental — causarDanoMental(op,1)
+Finta — Manobra —  — Desvie 6. Desvie mais 4 contra armas. — condicao("Arma" in encontrarOutro().rotulo,desviar(10),desviar(6))
+Psiquê atrasada — Manobra —  — Clash:Suspenda a carta do oponente. — condicao(clash(),suspender(encontrarOutro()),nada())
+Vazar — Manobra —  — Desvie 8. Pioneiro: Desvie mais 5 e consuma a segunda carta. — 
+Aparar — Manobra —  — Bloqueie 9. Bloqueie mais 6 contra armas. — 
+Mirar direitinho — Manobra —  — Consuma um ataque da sua mão e ganhe 12 de foco. Use o ataque consumido no final da rodada com dano extra igual a seu foco. — 
+Espada rápida — Ataque —  — Cause 11 de dano. — 
+Espada iôiô — Ataque —  — Cause 5 de dano duas vezes. — 
+Cotovelada — Ataque —  — Cause 8 de dano. Clash: Desvie 5. — 
+Corte duplo — Ataque —  — Cause 7 de dano. Pioneiro: Transforme a sua segunda carta numa cópia desta. — 
+Tiro de gude — Ataque —  — Cause 7 de dano á distância. Estilhaçar: Enfraqueça 2. Em cheio: Fragilize 2. — 
+Cabeçada — Ataque —  — Cause 15 de dano. Fique confuso 2. — 
+Punho de ferro — Ataque —  — Cause 3 de dano 3 vezes. Resvalar: Crie um Tiro de Gude na mão. — 
+Lapso Mental — Talento —  — Todas as cartas desta rodada serão consumidas no final. Se o inimigo tiver cartas na mão que sejam iguais a qualquer carta consumida, elas se consomem também. — 
+Peso na Consciência — Talento —  — Até o fim da luta, manter cartas custa 1 de mente adicional para o oponente. — 
+Espetar pensamento — Talento —  — Cause 3 de dano mental. — 
+Imagem Falsa — Talento —  — Desvie 15. — 
+Grito desconcertante — Talento —  — Cause dano igual à mente que falta ao adversário x 4. — 
+Golpe básico — Ataque —  — Cause 3 de dano, desvie 3. — 
+Manobra básica — Manobra —  — prepare 5. — 
+Talento básico — Talento —  — enfraqueça 2. — 
+Subir na onda — Manobra —  — Afaste-se até o fim da rodada. Evolua Arpão e Caldo. — 
+Enrijecer — Manobra —  — Bloqueie 11. — 
+Bons Reflexos — Manobra —  — Desvie 5. Clash: Cause 4 de dano. — 
+Arpão — Ataque —  — Cause 6 de dano. Evoluir: à distância. — 
+Pranchada — Ataque —  — Cause 8 de dano. Clash: Bloqueie 4. — 
+Porrada — Ataque —  — Cause 9 de dano. — 
+Caldo — Talento —  — Enfraqueça 3. Evoluir: Cause 2 de dano mental. — 
+Hidratar-se — Talento —  — Cure 3, prepare 2. Repita para cada Carta Regional do Mar que você tiver na mão. — 
+Lançar Rede — Manobra —  — Clash: consuma até 3 ataques da mão do oponente. — 
+Mergulhar — Manobra —  — Afaste—se. — 
+Remada — Ataque —  — Aproxime—se. Cause 7 de dano. — 
+Redemoinho — Talento —  — Todos ganham confuso 2. Ganhe 2 frágil e enfraqueça 2. — 
+Tacar Água — Talento —  — Enfraqueça 1. Combo: cause 1 de dano mental. — 

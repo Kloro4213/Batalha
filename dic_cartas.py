@@ -11,7 +11,7 @@ with open("Cartas Formatadas.txt","r", encoding="utf-8") as f:
 
 for carta in cartas:
     cs = carta.split("—")
-    DCC.update({int(cs[0]):CC.Carta(int(cs[0]),cs[1],cs[2],None,cs[3])})
+    DCC.update({int(cs[0]):CC.Carta(int(cs[0]),cs[1],cs[2],cs[3].split(";"),cs[4],cs[5].split(";"))})
 
 
 def imprimirDCC():

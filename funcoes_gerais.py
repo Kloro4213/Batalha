@@ -25,7 +25,17 @@ def batalha():
     limparmovimento()
     passarvez()
 
-def invocarJogador(campo,y,x,nome):
+
+def terminarBatalha():
+    CJ.jogo.modo[1] = "Movimentação"
+    CJ.jogo.teminimigo = False
+    CJ.jogo.temjogador = False
+    invocarJogador(CJ.jogo.campo)
+    invocarInimigo(CJ.jogo.campo)
+    ReporCampo()
+    imprimirCampo()
+
+def invocarJogador(campo,y=None,x=None,nome=None):
     if CJ.jogo.temjogador == True:
         sg.popup("Não podem haver dois jogadores!")
         sg.popup(CJ.jogo.jogador.x,CJ.jogo.jogador.y)
@@ -45,7 +55,7 @@ def invocarJogador(campo,y,x,nome):
         CJ.jogo.temjogador = True
         CJ.jogo.jogador = Kloro
 
-def invocarInimigo(campo,y,x,nome):
+def invocarInimigo(campo,y=None,x=None,nome=None):
     if CJ.jogo.teminimigo == True:
         sg.popup("Não podem haver dois inimigos!")
         sg.popup(CJ.jogo.inimigo.x,CJ.jogo.inimigo.y)
@@ -96,6 +106,7 @@ def N(letra):
 
 def buscaritem(item):
     return item
+
 
 def ReporCampo():
     for j in range(7):

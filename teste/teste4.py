@@ -1,5 +1,42 @@
 import re
 
+
+def SEPARAR(texto):
+    pilha=[""]
+    saída = []
+    texto = list(texto)
+    i = 0
+    while i<len(texto):
+        if pilha[len(pilha)-1] != "(" and pilha[len(pilha)-1] != "[":
+            if texto[i] != "(" and texto[i] != "[":
+                i = i+1
+            elif texto[i] == "(":
+                saída.append("")
+                pilha.append("(")
+                saída[len(saída)-1] = saída[len(saída)-1]+texto[i]
+                i = i+1
+            elif texto[i] == "[":
+                saída.append("")
+                pilha.append("[")
+                saída[len(saída)-1] = saída[len(saída)-1]+texto[i]
+                i = i+1
+        else:
+            if texto[i] != ")" and texto[i] != "]":
+                saída[len(saída)-1] = saída[len(saída)-1]+texto[i]
+                i = i+1
+            elif texto[i] == ")" and pilha[len(pilha)-1] == "(":
+                saída[len(saída)-1] = saída[len(saída)-1]+texto[i]
+                i = i+1
+                del pilha[len(pilha)-1]
+            elif texto[i] == "]" and pilha[len(pilha)-1] == "[":
+                saída[len(saída)-1] = saída[len(saída)-1]+texto[i]
+                i = i+1
+                del pilha[len(pilha)-1]
+            else:
+                saída[len(saída)-1] = saída[len(saída)-1]+texto[i]
+                i = i+1
+    return saída
+
 class Jogador:
     def __init__(self,y=None,x=None,vida=None, cartas = {},nome=""):
         self.vida=vida
@@ -13,6 +50,9 @@ class Jogador:
         self.cartasbasicas = []
         self.oponente = None
     
+    def encontrarEu(self):
+        return self
+
     def receberVida(self,valor):
         self.vida += int(int(valor))
         if self.vida > self.vidamax: self.vida = self.vidamax
@@ -20,20 +60,20 @@ class Jogador:
     def perderVida(self,valor):
         self.vida -= int(int(valor))
 
-    def condicao(self,criterio,sim,nao,sim2=None,nao2=None,sim3=None,nao3=None,sim4=None,nao4=None,sim5=None,nao5=None):
-        if criterio: 
-            resolver(jogador,sim)
-            if sim2 != None: resolver(jogador,sim2)
-            if sim3 != None: resolver(jogador,sim3)
-            if sim4 != None: resolver(jogador,sim4)
-            if sim5 != None: resolver(jogador,sim5)
-        if not criterio: 
-            resolver(jogador,nao)
-            if nao2 != None: resolver(jogador,nao2)
-            if nao3 != None: resolver(jogador,nao3)
-            if nao4 != None: resolver(jogador,nao4)
-            if nao5 != None: resolver(jogador,nao5)
-
+    def condicao(self,criterio,sim,nao):
+        print("O critério é:",criterio)
+        print("O critério é:",sim)
+        print("O critério é:",nao)
+        if criterio:
+            sim = sim.replace("[","").replace("]","")
+            sim = sim.split("+")
+            for comando in sim:
+                resolver(self,comando)
+        else:
+            nao = nao.replace("[","").replace("]","")
+            nao = nao.split("+")
+            for comando in nao:
+                resolver(self,comando)
     def nada(self):
         return None
 
@@ -44,7 +84,6 @@ class Jogador:
             return self.oponente
 
     def causarDano(self,alvo,dano):
-        print(alvo)
         alvo = self.definirAlvo(alvo)
         danofinal = dano
         alvo.perderVida(danofinal)
@@ -93,59 +132,72 @@ inimigo.oponente = kloro
 dano = "causarDano(op,45)"
 
 def resolver(fonte,negocio):
-    coisa = re.findall(r'\(.*\)',negocio)[0]
-    efeitoreal = negocio.replace(coisa,"")
-    coisa = list(coisa)
-    coisa[0]=""
-    coisa[-1]=""
-    coisa = "".join(coisa)
-    coisa = coisa.split(",")
-    print(coisa)
-    i = 0
+    temp = re.findall(r'[(].*[)]',negocio)[0]
+    efeitoreal = negocio.replace(temp,"")
+    temp = list(temp)
+    temp[0]=""
+    temp[-1]=""
+    temp = "".join(temp)
+    coisa = SEPARAR(temp)
+    dicreal = {}
     for item in coisa:
-        coisa[i] = coisa[i].replace("#",",")
+        dicreal.update({"blob"+str(coisa.index(item)):item})
+        temp = temp.replace(item,"blob"+str(coisa.index(item)))
+    temp = temp.split(",")
+    i=0
+    while i <len(temp):
+        correspondencia = re.findall(r'blob\d',temp[i])
+        for j in range(len(correspondencia)):        
+            temp[i] = temp[i].replace(correspondencia[j],dicreal[correspondencia[j]])
         i = i+1
-    print(coisa)
     funcao = getattr(fonte, efeitoreal)
-    if len(coisa)== 1:
-        funcao(coisa[0])
-    elif len(coisa) == 2:
-        funcao(coisa[0],coisa[1])
-    elif len(coisa) == 3:
-        funcao(coisa[0],coisa[1],coisa[2])
-    elif len(coisa) == 4:
-        funcao(coisa[0],coisa[1],coisa[2],coisa[3])
-    elif len(coisa) == 5:
-        funcao(coisa[0],coisa[1],coisa[2],coisa[3],coisa[4])
-    elif len(coisa) == 6:
-        funcao(coisa[0],coisa[1],coisa[2],coisa[3],coisa[4],coisa[5])
-    elif len(coisa) == 7:
-        funcao(coisa[0],coisa[1],coisa[2],coisa[3],coisa[4],coisa[5],coisa[6])
-    elif len(coisa) == 8:
-        funcao(coisa[0],coisa[1],coisa[2],coisa[3],coisa[4],coisa[5],coisa[6],coisa[7])
-    elif len(coisa) == 9:
-        funcao(coisa[0],coisa[1],coisa[2],coisa[3],coisa[4],coisa[5],coisa[6],coisa[7],coisa[8])
-    elif len(coisa) == 10:
-        funcao(coisa[0],coisa[1],coisa[2],coisa[3],coisa[4],coisa[5],coisa[6],coisa[7],coisa[8],coisa[9])
-    elif len(coisa) == 11:
-        funcao(coisa[0],coisa[1],coisa[2],coisa[3],coisa[4],coisa[5],coisa[6],coisa[7],coisa[8],coisa[9],coisa[10])
+    if len(temp)== 1:
+        funcao(temp[0])
+    elif len(temp) == 2:
+        funcao(temp[0],temp[1])
+    elif len(temp) == 3:
+        funcao(temp[0],temp[1],temp[2])
+    elif len(temp) == 4:
+        funcao(temp[0],temp[1],temp[2],temp[3])
+    elif len(temp) == 5:
+        funcao(temp[0],temp[1],temp[2],temp[3],temp[4])
+    elif len(temp) == 6:
+        funcao(temp[0],temp[1],temp[2],temp[3],temp[4],temp[5])
+    elif len(temp) == 7:
+        funcao(temp[0],temp[1],temp[2],temp[3],temp[4],temp[5],temp[6])
+    elif len(temp) == 8:
+        funcao(temp[0],temp[1],temp[2],temp[3],temp[4],temp[5],temp[6],temp[7])
+    elif len(temp) == 9:
+        funcao(temp[0],temp[1],temp[2],temp[3],temp[4],temp[5],temp[6],temp[7],temp[8])
+    elif len(temp) == 10:
+        funcao(temp[0],temp[1],temp[2],temp[3],temp[4],temp[5],temp[6],temp[7],temp[8],temp[9])
+    elif len(temp) == 11:
+        funcao(temp[0],temp[1],temp[2],temp[3],temp[4],temp[5],temp[6],temp[7],temp[8],temp[9],temp[10])
 
     
 
 
-trick = "condicao(jogador.vida<40,receberVida(23),jogador.nada(),causarDano(op#45))"
+magic = "condicao(jogador.vida==40,perderVida(99),[receberVida(23)+causarDano(op,45)])"
 
 
-print(jogador.vida)
-print(inimigo.vida)
+print("A vida do jogador é:",jogador.vida)
+print("A vida do inimigo é:",inimigo.vida)
+
+print("Iremos causar 45 de dano ao inimigo!")
 
 resolver(jogador,dano)
 
-print(jogador.vida)
-print(inimigo.vida)
+print("A vida do jogador é:",jogador.vida)
+print("A vida do inimigo é:",inimigo.vida)
 
+print("Se a vida do jogador foir menor que 40, ele perderá 99 de vida. Do contrário, receberá 23 e causará 45 de dano ao oponente")
+resolver(jogador,magic)
 
-resolver(jogador,trick)
+print("A vida do jogador é:",jogador.vida)
+print("A vida do inimigo é:",inimigo.vida)
 
-print(jogador.vida)
-print(inimigo.vida)
+print("Se a vida do jogador foir menor que 40, ele perderá 99 de vida. Do contrário, receberá 23 e causará 45 de dano ao oponente")
+resolver(jogador,magic)
+
+print("A vida do jogador é:",jogador.vida)
+print("A vida do inimigo é:",inimigo.vida)

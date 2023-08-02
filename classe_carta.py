@@ -90,6 +90,8 @@ class Carta:
             CJ.jogo.batalha.segundarodada[CJ.jogo.batalha.segundarodada.index(carta)] = None
             CJ.jogo.batalha.pilhasuspensa.append(temp)
 
+    def pioneiro(self):
+        return self.encontrarEu() in CJ.jogo.batalha.primeirarodada
 
     def nada(self):
         return None

@@ -3,8 +3,8 @@ Golpe básico — Ataque — Arma — Cause 5 de dano — causarDano(op,5)
 Manobra básica — Manobra —  — desvie 3 e bloqueie 5 — desviar(3);bloquear(5)
 Talento básico — Talento — Psíquico — cause 1 de dano mental — causarDanoMental(op,1)
 Finta — Manobra —  — Desvie 6. Desvie mais 4 contra armas. — condicao("Arma" in encontrarOutro().rotulo,desviar(10),desviar(6))
-Psiquê atrasada — Manobra —  — Clash:Suspenda a carta do oponente. — condicao(clash(),suspender(encontrarOutro()),nada())
-Vazar — Manobra —  — Desvie 8. Pioneiro: Desvie mais 5 e consuma a segunda carta. — 
+Psiquê atrasada — Manobra — Psíquico — Clash:Suspenda a carta do oponente. — condicao(clash(),suspender(encontrarOutro()),nada())
+Vazar — Manobra —  — Desvie 8. Pioneiro: Desvie mais 5 e consuma a segunda carta. — condicao(pioneiro(),desviar(8),)
 Aparar — Manobra —  — Bloqueie 9. Bloqueie mais 6 contra armas. — 
 Mirar direitinho — Manobra —  — Consuma um ataque da sua mão e ganhe 12 de foco. Use o ataque consumido no final da rodada com dano extra igual a seu foco. — 
 Espada rápida — Ataque —  — Cause 11 de dano. — 

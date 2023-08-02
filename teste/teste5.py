@@ -90,6 +90,6 @@ print(SEPARAR(negocio))
 
 
 
-magic = "condicao(jogador.vida<40,perderVida(99),[receberVida(23)+causarDano(op,45)])"
+magic = "condicao(encontrarEu().vida<40,perderVida(99),[receberVida(23)+causarDano(op,45)])"
 
 print(SEPARAR(magic))

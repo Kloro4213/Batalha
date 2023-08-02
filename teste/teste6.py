@@ -5,6 +5,15 @@ print(sympify(string, evaluate=True))
 print(sympify(string, evaluate=False))
 
 
+def maracuja(self):
+    print("maracujá")
+
+
 expressao = "12<45"
 
-print(exec(expressao))
+print(sympify(expressao))
+
+
+expressao = "maracuja()"
+
+sympify(expressao)

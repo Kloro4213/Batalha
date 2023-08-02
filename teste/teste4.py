@@ -1,5 +1,5 @@
 import re
-
+from sympy import sympify
 
 def SEPARAR(texto):
     pilha=[""]
@@ -64,7 +64,7 @@ class Jogador:
         print("O critério é:",criterio)
         print("O critério é:",sim)
         print("O critério é:",nao)
-        if criterio:
+        if sympify(criterio):
             sim = sim.replace("[","").replace("]","")
             sim = sim.split("+")
             for comando in sim:
@@ -177,7 +177,7 @@ def resolver(fonte,negocio):
     
 
 
-magic = "condicao(jogador.vida==40,perderVida(99),[receberVida(23)+causarDano(op,45)])"
+magic = "condicao(self.vida<40,perderVida(99),[receberVida(23)+causarDano(op,45)])"
 
 
 print("A vida do jogador é:",jogador.vida)

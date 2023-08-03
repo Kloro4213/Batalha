@@ -9,11 +9,41 @@ def maracuja(self):
     print("maracujá")
 
 
-expressao = "12<45"
+expressao = "macaco.banana"
 
-print(sympify(expressao))
+print(expressao.split("."))
+
+expressao = "macacosozinho"
+
+print(expressao.split("."))
 
 
-expressao = "maracuja()"
 
-sympify(expressao)
+
+class Jogador:
+    def __init__(self,y=None,x=None,vida=None, cartas = {},nome=""):
+        self.vida=vida
+        self.vidamax = vida
+        self.cartas=cartas
+        self.y=y
+        self.x=x
+        self.nome=nome
+        self.mente = None
+        self.baralho = []
+        self.cartasbasicas = []
+        self.oponente = None
+
+
+kloro = Jogador(2,3,12,None,"Kloro")
+
+
+coisa = "vida"
+
+valor = getattr(kloro,coisa)
+
+print(valor)
+
+
+
+
+

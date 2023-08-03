@@ -61,21 +61,41 @@ class Jogador:
         self.vida -= int(int(valor))
 
     def condicao(self,criterio,sim,nao):
-        print("O critério é:",criterio)
-        print("O critério é:",sim)
-        print("O critério é:",nao)
-        if sympify(criterio):
+        teste=re.findall(r'==|<|dentrode',criterio)[0]
+        expressao = criterio.split(teste)
+        coisa = expressao[0].split(".")
+        if len(coisa)>1:
+            coisa[0] = getattr(self,coisa[0])
+            valor = getattr(coisa[0](),coisa[1])()
+        else: valor2 = coisa2[0]
+        coisa2 = expressao[1].split(".")
+        if len(coisa2)>1:
+            coisa2[0] = getattr(self,coisa2[0])
+            valor2 = getattr(coisa2[0](),coisa2[1])()
+        else: valor2 = coisa2[0]
+        if teste == "==":
+            resultado = sympify(str(valor)+"=="+str(valor2))
+        elif teste == "<":
+            resultado = sympify(str(valor)+"<"+str(valor2))
+        elif teste == "dentrode":
+            resultado = sympify(str(valor)+" in "+str(valor2))
+        if resultado:
+            print("sim está sendo ativado!!")
             sim = sim.replace("[","").replace("]","")
             sim = sim.split("+")
             for comando in sim:
                 resolver(self,comando)
         else:
+            print("nao está sendo ativado!!")
             nao = nao.replace("[","").replace("]","")
             nao = nao.split("+")
             for comando in nao:
                 resolver(self,comando)
     def nada(self):
         return None
+
+    def encontrarOp(self):
+        return self.oponente
 
     def definirAlvo(self,alvo):
         if alvo == "op":
@@ -87,6 +107,10 @@ class Jogador:
         alvo = self.definirAlvo(alvo)
         danofinal = dano
         alvo.perderVida(danofinal)
+
+    def curar(self,alvo,quantidade):
+        alvo = self.definirAlvo(alvo)
+        alvo.receberVida(quantidade)
 
 
 class Inimigo:
@@ -177,7 +201,7 @@ def resolver(fonte,negocio):
     
 
 
-magic = "condicao(self.vida<40,perderVida(99),[receberVida(23)+causarDano(op,45)])"
+magic = "condicao(encontrarOp.acessarVida<40,[perderVida(99)+curar(op,58)],[receberVida(23)+causarDano(op,45)])"
 
 
 print("A vida do jogador é:",jogador.vida)
@@ -190,7 +214,7 @@ resolver(jogador,dano)
 print("A vida do jogador é:",jogador.vida)
 print("A vida do inimigo é:",inimigo.vida)
 
-print("Se a vida do jogador foir menor que 40, ele perderá 99 de vida. Do contrário, receberá 23 e causará 45 de dano ao oponente")
+print("Se a vida do inimigo foir menor que 40, ele perderá 99 de vida. Do contrário, receberá 23 e causará 45 de dano ao oponente")
 resolver(jogador,magic)
 
 print("A vida do jogador é:",jogador.vida)
